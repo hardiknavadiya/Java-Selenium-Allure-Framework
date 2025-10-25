@@ -1,0 +1,142 @@
+<html>
+<head>
+<title>TestNG:  firefox-tests</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>firefox-tests</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>5/1/0</td>
+</tr><tr>
+<td>Started on:</td><td>Sat Oct 25 13:41:14 EDT 2025</td>
+</tr>
+<tr><td>Total time:</td><td>34 seconds (34968 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-failed'>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.navadiya.tests.ImageLoadTest.imagesHaveSrc()'><b>imagesHaveSrc</b><br>Test class: org.navadiya.tests.ImageLoadTest</td>
+<td><div><pre>java.lang.AssertionError: Image src should not be null expected object to not be null
+	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace2036214465", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace2036214465'><pre>java.lang.AssertionError: Image src should not be null expected object to not be null
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.assertNotNull(Assert.java:1484)
+	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
+	at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:664)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:227)
+	at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:50)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:957)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:200)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:148)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+</pre></div></td>
+<td>4</td>
+<td>org.navadiya.tests.ImageLoadTest@72437d8d</td></tr>
+</table><p>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='org.navadiya.tests.HeaderElementTest.h1ElementPresent()'><b>h1ElementPresent</b><br>Test class: org.navadiya.tests.HeaderElementTest</td>
+<td></td>
+<td>3</td>
+<td>org.navadiya.tests.HeaderElementTest@53941c2f</td></tr>
+<tr>
+<td title='org.navadiya.tests.LinkPresenceTest.hasAtLeastOneLink()'><b>hasAtLeastOneLink</b><br>Test class: org.navadiya.tests.LinkPresenceTest</td>
+<td></td>
+<td>1</td>
+<td>org.navadiya.tests.LinkPresenceTest@19b93fa8</td></tr>
+<tr>
+<td title='org.navadiya.tests.TitleTest.titleIsPresent()'><b>titleIsPresent</b><br>Test class: org.navadiya.tests.TitleTest</td>
+<td></td>
+<td>0</td>
+<td>org.navadiya.tests.TitleTest@386f0da3</td></tr>
+<tr>
+<td title='org.navadiya.tests.SampleTest.openExampleAndAssertTitle()'><b>openExampleAndAssertTitle</b><br>Test class: org.navadiya.tests.SampleTest</td>
+<td></td>
+<td>8</td>
+<td>org.navadiya.tests.SampleTest@19835e64</td></tr>
+<tr>
+<td title='org.navadiya.tests.FooterTest.footerPresent()'><b>footerPresent</b><br>Test class: org.navadiya.tests.FooterTest</td>
+<td></td>
+<td>6</td>
+<td>org.navadiya.tests.FooterTest@29ca3d04</td></tr>
+</table><p>
+</body>
+</html>

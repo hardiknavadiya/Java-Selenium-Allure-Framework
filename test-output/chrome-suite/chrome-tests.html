@@ -57,9 +57,9 @@ function toggleAllBoxes() {
 <tr>
 <td>Tests passed/Failed/Skipped:</td><td>5/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Mon Oct 27 18:55:19 EDT 2025</td>
+<td>Started on:</td><td>Mon Oct 27 19:09:32 EDT 2025</td>
 </tr>
-<tr><td>Total time:</td><td>8 seconds (8795 ms)</td>
+<tr><td>Total time:</td><td>15 seconds (15092 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -77,51 +77,16 @@ function toggleAllBoxes() {
 </tr>
 <tr>
 <td title='org.navadiya.tests.ImageLoadTest.imagesHaveSrc()'><b>imagesHaveSrc</b><br>Test class: org.navadiya.tests.ImageLoadTest</td>
-<td><div><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
-  (Session info: chrome=130.0.6723.69)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;22.0.2&apos;
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [6ab3578ad0ed2b5f8f5e759fea6c4553, getElementAttribute {id=f.4C51EAFDDD443B0D2D70531814C98967.d.6A2E4A78AFF57DA9165001EC706A1595.e.41, name=src}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.69, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:34787}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.19.0.5:4444/sessio..., se:cdpVersion: 130.0.6723.69, se:containerName: , se:noVncPort: 7900, se:vnc: ws://172.19.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.19.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[RemoteWebDriver: chrome on linux (6ab3578ad0ed2b5f8f5e759fea6c4553)] -&gt; tag name: img]
-Session ID: 6ab3578ad0ed2b5f8f5e759fea6c4553
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
-	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:27)
+<td><div><pre>java.lang.AssertionError: Image src should not be null expected object to not be null
+	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
-... Removed 13 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace687339565", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace687339565'><pre>org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
-  (Session info: chrome=130.0.6723.69)
-For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
-Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
-System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;22.0.2&apos;
-Driver info: org.openqa.selenium.remote.RemoteWebDriver
-Command: [6ab3578ad0ed2b5f8f5e759fea6c4553, getElementAttribute {id=f.4C51EAFDDD443B0D2D70531814C98967.d.6A2E4A78AFF57DA9165001EC706A1595.e.41, name=src}]
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 130.0.6723.69, chrome: {chromedriverVersion: 130.0.6723.69 (3ec172b971b9..., userDataDir: /tmp/.org.chromium.Chromium...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:34787}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: linux, proxy: Proxy(), se:bidiEnabled: false, se:cdp: ws://172.19.0.5:4444/sessio..., se:cdpVersion: 130.0.6723.69, se:containerName: , se:noVncPort: 7900, se:vnc: ws://172.19.0.5:4444/sessio..., se:vncEnabled: true, se:vncLocalAddress: ws://172.19.0.5:7900, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Element: [[RemoteWebDriver: chrome on linux (6ab3578ad0ed2b5f8f5e759fea6c4553)] -&gt; tag name: img]
-Session ID: 6ab3578ad0ed2b5f8f5e759fea6c4553
-	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
-	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
-	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
-	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
-	at org.openqa.selenium.remote.TracedCommandExecutor.execute(TracedCommandExecutor.java:51)
-	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
-	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
-	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
-	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:27)
+... Removed 12 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1396988796", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1396988796'><pre>java.lang.AssertionError: Image src should not be null expected object to not be null
+	at org.testng.Assert.fail(Assert.java:111)
+	at org.testng.Assert.assertNotNull(Assert.java:1484)
+	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -136,8 +101,8 @@ Session ID: 6ab3578ad0ed2b5f8f5e759fea6c4553
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
 </pre></div></td>
-<td>1</td>
-<td>org.navadiya.tests.ImageLoadTest@6692b6c6</td></tr>
+<td>5</td>
+<td>org.navadiya.tests.ImageLoadTest@bb9e6dc</td></tr>
 </table><p>
 <table width='100%' border='1' class='invocation-passed'>
 <tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
@@ -148,30 +113,30 @@ Session ID: 6ab3578ad0ed2b5f8f5e759fea6c4553
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='org.navadiya.tests.TitleTest.titleIsPresent()'><b>titleIsPresent</b><br>Test class: org.navadiya.tests.TitleTest</td>
+<td title='org.navadiya.tests.LinkPresenceTest.hasAtLeastOneLink()'><b>hasAtLeastOneLink</b><br>Test class: org.navadiya.tests.LinkPresenceTest</td>
 <td></td>
-<td>0</td>
-<td>org.navadiya.tests.TitleTest@4e07b95f</td></tr>
+<td>2</td>
+<td>org.navadiya.tests.LinkPresenceTest@4bd31064</td></tr>
 <tr>
 <td title='org.navadiya.tests.FooterTest.footerPresent()'><b>footerPresent</b><br>Test class: org.navadiya.tests.FooterTest</td>
 <td></td>
-<td>2</td>
-<td>org.navadiya.tests.FooterTest@4bc222e</td></tr>
+<td>5</td>
+<td>org.navadiya.tests.FooterTest@57a3e26a</td></tr>
 <tr>
 <td title='org.navadiya.tests.SampleTest.openExampleAndAssertTitle()'><b>openExampleAndAssertTitle</b><br>Test class: org.navadiya.tests.SampleTest</td>
 <td></td>
 <td>2</td>
-<td>org.navadiya.tests.SampleTest@1c39680d</td></tr>
+<td>org.navadiya.tests.SampleTest@4bf48f6</td></tr>
 <tr>
 <td title='org.navadiya.tests.HeaderElementTest.h1ElementPresent()'><b>h1ElementPresent</b><br>Test class: org.navadiya.tests.HeaderElementTest</td>
 <td></td>
-<td>2</td>
-<td>org.navadiya.tests.HeaderElementTest@748741cb</td></tr>
+<td>3</td>
+<td>org.navadiya.tests.HeaderElementTest@3224a577</td></tr>
 <tr>
-<td title='org.navadiya.tests.LinkPresenceTest.hasAtLeastOneLink()'><b>hasAtLeastOneLink</b><br>Test class: org.navadiya.tests.LinkPresenceTest</td>
+<td title='org.navadiya.tests.TitleTest.titleIsPresent()'><b>titleIsPresent</b><br>Test class: org.navadiya.tests.TitleTest</td>
 <td></td>
 <td>1</td>
-<td>org.navadiya.tests.LinkPresenceTest@329dbdbf</td></tr>
+<td>org.navadiya.tests.TitleTest@6a57ae10</td></tr>
 </table><p>
 </body>
 </html>

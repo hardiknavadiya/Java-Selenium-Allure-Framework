@@ -9,16 +9,34 @@
 <table>
 <tr><th>Test</th><th># Passed</th><th># Skipped</th><th># Retried</th><th># Failed</th><th>Time (ms)</th><th>Included Groups</th><th>Excluded Groups</th></tr>
 <tr><th colspan="8">edge-suite</th></tr>
-<tr><td><a href="#t0">edge-tests</a></td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">23,715</td><td></td><td></td></tr>
+<tr><td><a href="#t0">edge-tests</a></td><td class="num">5</td><td class="num">0</td><td class="num">0</td><td class="num attn">1</td><td class="num">20,792</td><td></td><td></td></tr>
 </table>
-<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">edge-suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">edge-tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">org.navadiya.tests.ImageLoadTest</td><td><a href="#m0">imagesHaveSrc</a></td><td rowspan="1">1761606253935</td><td rowspan="1">4754</td></tr><tr><th colspan="4">edge-tests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.FooterTest</td><td><a href="#m1">footerPresent</a></td><td rowspan="1">1761606253935</td><td rowspan="1">5913</td></tr><tr class="passedodd"><td rowspan="1">org.navadiya.tests.HeaderElementTest</td><td><a href="#m2">h1ElementPresent</a></td><td rowspan="1">1761606253935</td><td rowspan="1">4760</td></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.LinkPresenceTest</td><td><a href="#m3">hasAtLeastOneLink</a></td><td rowspan="1">1761606253935</td><td rowspan="1">4434</td></tr><tr class="passedodd"><td rowspan="1">org.navadiya.tests.SampleTest</td><td><a href="#m4">openExampleAndAssertTitle</a></td><td rowspan="1">1761606260859</td><td rowspan="1">13555</td></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.TitleTest</td><td><a href="#m5">titleIsPresent</a></td><td rowspan="1">1761606260732</td><td rowspan="1">8171</td></tr></tbody>
+<table id='summary'><thead><tr><th>Class</th><th>Method</th><th>Start</th><th>Time (ms)</th></tr></thead><tbody><tr><th colspan="4">edge-suite</th></tr></tbody><tbody id="t0"><tr><th colspan="4">edge-tests &#8212; failed</th></tr><tr class="failedeven"><td rowspan="1">org.navadiya.tests.ImageLoadTest</td><td><a href="#m0">imagesHaveSrc</a></td><td rowspan="1">1761606811609</td><td rowspan="1">5976</td></tr><tr><th colspan="4">edge-tests &#8212; passed</th></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.FooterTest</td><td><a href="#m1">footerPresent</a></td><td rowspan="1">1761606811609</td><td rowspan="1">6338</td></tr><tr class="passedodd"><td rowspan="1">org.navadiya.tests.HeaderElementTest</td><td><a href="#m2">h1ElementPresent</a></td><td rowspan="1">1761606811609</td><td rowspan="1">4942</td></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.LinkPresenceTest</td><td><a href="#m3">hasAtLeastOneLink</a></td><td rowspan="1">1761606811609</td><td rowspan="1">8685</td></tr><tr class="passedodd"><td rowspan="1">org.navadiya.tests.SampleTest</td><td><a href="#m4">openExampleAndAssertTitle</a></td><td rowspan="1">1761606819508</td><td rowspan="1">9370</td></tr><tr class="passedeven"><td rowspan="1">org.navadiya.tests.TitleTest</td><td><a href="#m5">titleIsPresent</a></td><td rowspan="1">1761606820656</td><td rowspan="1">8153</td></tr></tbody>
 </table>
-<h2>edge-tests</h2><h3 id="m0">org.navadiya.tests.ImageLoadTest#imagesHaveSrc</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">java.lang.AssertionError: Image src should not be null expected object to not be null
-	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
+<h2>edge-tests</h2><h3 id="m0">org.navadiya.tests.ImageLoadTest#imagesHaveSrc</h3><table class="result"><tr><th>Exception</th></tr><tr><td><div class="stacktrace">org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: MicrosoftEdge=141.0.3537.99)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: &apos;4.11.0&apos;, revision: &apos;040bc5406b&apos;
+System info: os.name: &apos;Windows 11&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;10.0&apos;, java.version: &apos;22.0.2&apos;
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [f6e757a434599cdc75d8cdc0472a07b4, getElementAttribute {id=f.CC8FB90D65062C3D76F760413DF04748.d.AEB1671D543B680E6D64D1EF60F66930.e.43, name=src}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.99, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60724}, msedge: {msedgedriverVersion: 141.0.3537.99 (1b2f83d6a142..., userDataDir: C:\Users\hardi\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60724/devtoo..., se:cdpVersion: 141.0.3537.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (f6e757a434599cdc75d8cdc0472a07b4)] -&gt; tag name: img]
+Session ID: f6e757a434599cdc75d8cdc0472a07b4
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+	at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+	at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+	at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+	at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+	at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:27)
 	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
 	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
 	at java.base/java.lang.Thread.run(Thread.java:1570)
-... Removed 12 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
+... Removed 13 stack frames</div></td></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m1">org.navadiya.tests.FooterTest#footerPresent</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m2">org.navadiya.tests.HeaderElementTest#h1ElementPresent</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>
 <h3 id="m3">org.navadiya.tests.LinkPresenceTest#hasAtLeastOneLink</h3><table class="result"><tr><th class="invisible"/></tr></table><p class="totop"><a href="#summary">back to summary</a></p>

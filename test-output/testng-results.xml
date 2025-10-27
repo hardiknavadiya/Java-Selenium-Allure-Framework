@@ -2,137 +2,165 @@
 <testng-results ignored="0" total="6" passed="5" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-27T19:04:11 GMT-04:00" name="edge-suite" finished-at="2025-10-27T19:04:34 GMT-04:00" duration-ms="23715">
+  <suite started-at="2025-10-27T19:13:28 GMT-04:00" name="edge-suite" finished-at="2025-10-27T19:13:49 GMT-04:00" duration-ms="20792">
     <groups>
     </groups>
-    <test started-at="2025-10-27T19:04:11 GMT-04:00" name="edge-tests" finished-at="2025-10-27T19:04:34 GMT-04:00" duration-ms="23715">
-      <class name="org.navadiya.tests.SampleTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:04:19 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:20 GMT-04:00" duration-ms="1821" status="PASS">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- setUp -->
-        <test-method signature="openExampleAndAssertTitle()[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:04:20 GMT-04:00" name="openExampleAndAssertTitle" finished-at="2025-10-27T19:04:34 GMT-04:00" duration-ms="13555" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- openExampleAndAssertTitle -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:04:34 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:34 GMT-04:00" duration-ms="312" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- tearDown -->
-      </class> <!-- org.navadiya.tests.SampleTest -->
+    <test started-at="2025-10-27T19:13:28 GMT-04:00" name="edge-tests" finished-at="2025-10-27T19:13:49 GMT-04:00" duration-ms="20792">
       <class name="org.navadiya.tests.TitleTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:04:19 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:20 GMT-04:00" duration-ms="1585" status="PASS">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:13:38 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:40 GMT-04:00" duration-ms="1995" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="titleIsPresent()[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:04:20 GMT-04:00" name="titleIsPresent" finished-at="2025-10-27T19:04:28 GMT-04:00" duration-ms="8171" status="PASS">
+        <test-method signature="titleIsPresent()[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:13:40 GMT-04:00" name="titleIsPresent" finished-at="2025-10-27T19:13:48 GMT-04:00" duration-ms="8153" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- titleIsPresent -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:04:28 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:29 GMT-04:00" duration-ms="437" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.TitleTest@6a57ae10]" started-at="2025-10-27T19:13:48 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:49 GMT-04:00" duration-ms="244" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- org.navadiya.tests.TitleTest -->
-      <class name="org.navadiya.tests.FooterTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:04:11 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:13 GMT-04:00" duration-ms="2733" status="PASS">
+      <class name="org.navadiya.tests.SampleTest">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:13:37 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:39 GMT-04:00" duration-ms="2387" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="footerPresent()[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:04:13 GMT-04:00" name="footerPresent" finished-at="2025-10-27T19:04:19 GMT-04:00" duration-ms="5913" status="PASS">
+        <test-method signature="openExampleAndAssertTitle()[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:13:39 GMT-04:00" name="openExampleAndAssertTitle" finished-at="2025-10-27T19:13:48 GMT-04:00" duration-ms="9370" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- openExampleAndAssertTitle -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.SampleTest@4bf48f6]" started-at="2025-10-27T19:13:48 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:49 GMT-04:00" duration-ms="224" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- org.navadiya.tests.SampleTest -->
+      <class name="org.navadiya.tests.FooterTest">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:13:28 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:31 GMT-04:00" duration-ms="3137" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setUp -->
+        <test-method signature="footerPresent()[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:13:31 GMT-04:00" name="footerPresent" finished-at="2025-10-27T19:13:37 GMT-04:00" duration-ms="6338" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- footerPresent -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:04:19 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:20 GMT-04:00" duration-ms="627" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.FooterTest@57a3e26a]" started-at="2025-10-27T19:13:37 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:38 GMT-04:00" duration-ms="884" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- org.navadiya.tests.FooterTest -->
       <class name="org.navadiya.tests.HeaderElementTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:04:11 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:13 GMT-04:00" duration-ms="2779" status="PASS">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:13:28 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:31 GMT-04:00" duration-ms="3094" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="h1ElementPresent()[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:04:13 GMT-04:00" name="h1ElementPresent" finished-at="2025-10-27T19:04:18 GMT-04:00" duration-ms="4760" status="PASS">
+        <test-method signature="h1ElementPresent()[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:13:31 GMT-04:00" name="h1ElementPresent" finished-at="2025-10-27T19:13:36 GMT-04:00" duration-ms="4942" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- h1ElementPresent -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:04:18 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:19 GMT-04:00" duration-ms="389" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.HeaderElementTest@3224a577]" started-at="2025-10-27T19:13:36 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:37 GMT-04:00" duration-ms="522" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- org.navadiya.tests.HeaderElementTest -->
       <class name="org.navadiya.tests.LinkPresenceTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:04:11 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:13 GMT-04:00" duration-ms="2769" status="PASS">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:13:28 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:31 GMT-04:00" duration-ms="3148" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="hasAtLeastOneLink()[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:04:13 GMT-04:00" name="hasAtLeastOneLink" finished-at="2025-10-27T19:04:18 GMT-04:00" duration-ms="4434" status="PASS">
+        <test-method signature="hasAtLeastOneLink()[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:13:31 GMT-04:00" name="hasAtLeastOneLink" finished-at="2025-10-27T19:13:40 GMT-04:00" duration-ms="8685" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- hasAtLeastOneLink -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:04:18 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:19 GMT-04:00" duration-ms="591" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.LinkPresenceTest@4bd31064]" started-at="2025-10-27T19:13:40 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:40 GMT-04:00" duration-ms="414" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- org.navadiya.tests.LinkPresenceTest -->
       <class name="org.navadiya.tests.ImageLoadTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:04:11 GMT-04:00" name="setUp" finished-at="2025-10-27T19:04:13 GMT-04:00" duration-ms="2778" status="PASS">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:13:28 GMT-04:00" name="setUp" finished-at="2025-10-27T19:13:31 GMT-04:00" duration-ms="3144" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@5a2d131d]]>
+                <![CDATA[org.testng.TestRunner@14fc1f0]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="imagesHaveSrc()[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:04:13 GMT-04:00" name="imagesHaveSrc" finished-at="2025-10-27T19:04:18 GMT-04:00" duration-ms="4754" status="FAIL">
-          <exception class="java.lang.AssertionError">
+        <test-method signature="imagesHaveSrc()[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:13:31 GMT-04:00" name="imagesHaveSrc" finished-at="2025-10-27T19:13:37 GMT-04:00" duration-ms="5976" status="FAIL">
+          <exception class="org.openqa.selenium.StaleElementReferenceException">
             <message>
-              <![CDATA[Image src should not be null expected object to not be null]]>
+              <![CDATA[stale element reference: stale element not found in the current frame
+  (Session info: MicrosoftEdge=141.0.3537.99)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [f6e757a434599cdc75d8cdc0472a07b4, getElementAttribute {id=f.CC8FB90D65062C3D76F760413DF04748.d.AEB1671D543B680E6D64D1EF60F66930.e.43, name=src}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.99, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60724}, msedge: {msedgedriverVersion: 141.0.3537.99 (1b2f83d6a142..., userDataDir: C:\Users\hardi\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60724/devtoo..., se:cdpVersion: 141.0.3537.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (f6e757a434599cdc75d8cdc0472a07b4)] -> tag name: img]
+Session ID: f6e757a434599cdc75d8cdc0472a07b4]]>
             </message>
             <full-stacktrace>
-              <![CDATA[java.lang.AssertionError: Image src should not be null expected object to not be null
-at org.testng.Assert.fail(Assert.java:111)
-at org.testng.Assert.assertNotNull(Assert.java:1484)
-at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:29)
+              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: stale element not found in the current frame
+  (Session info: MicrosoftEdge=141.0.3537.99)
+For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#stale-element-reference-exception
+Build info: version: '4.11.0', revision: '040bc5406b'
+System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '22.0.2'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Command: [f6e757a434599cdc75d8cdc0472a07b4, getElementAttribute {id=f.CC8FB90D65062C3D76F760413DF04748.d.AEB1671D543B680E6D64D1EF60F66930.e.43, name=src}]
+Capabilities {acceptInsecureCerts: false, browserName: MicrosoftEdge, browserVersion: 141.0.3537.99, fedcm:accounts: true, ms:edgeOptions: {debuggerAddress: localhost:60724}, msedge: {msedgedriverVersion: 141.0.3537.99 (1b2f83d6a142..., userDataDir: C:\Users\hardi\AppData\Loca...}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:60724/devtoo..., se:cdpVersion: 141.0.3537.99, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Element: [[EdgeDriver: MicrosoftEdge on windows (f6e757a434599cdc75d8cdc0472a07b4)] -> tag name: img]
+Session ID: f6e757a434599cdc75d8cdc0472a07b4
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:200)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:133)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:52)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:191)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:196)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:171)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:518)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:224)
+at org.openqa.selenium.remote.RemoteWebElement.getAttribute(RemoteWebElement.java:150)
+at org.navadiya.tests.ImageLoadTest.imagesHaveSrc(ImageLoadTest.java:27)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:139)
@@ -148,11 +176,11 @@ at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecut
 at java.base/java.lang.Thread.run(Thread.java:1570)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.AssertionError -->
+          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- imagesHaveSrc -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:04:18 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:04:19 GMT-04:00" duration-ms="392" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.ImageLoadTest@bb9e6dc]" started-at="2025-10-27T19:13:37 GMT-04:00" name="tearDown" finished-at="2025-10-27T19:13:38 GMT-04:00" duration-ms="1009" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

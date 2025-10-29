@@ -17,7 +17,7 @@
         <allure.version>2.20.1</allure.version>
         <assertj.version>3.24.2</assertj.version>
         <poi.version>5.2.3</poi.version>
-        <webdrivermanager.version>6.1.0</webdrivermanager.version>
+        <webdrivermanager.version>6.3.2</webdrivermanager.version>
         <!-- Canonical Allure results directory under the project's build directory (usually 'target') -->
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
     </properties>
@@ -125,6 +125,9 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
+                        <app.env.default>${app.env.default}</app.env.default>
+                        <app.browsers>${app.browsers}</app.browsers>
+                        <app.headless>${app.headless}</app.headless>
                         <!-- Use the canonical property so results go to target/allure-results -->
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
                     </systemPropertyVariables>

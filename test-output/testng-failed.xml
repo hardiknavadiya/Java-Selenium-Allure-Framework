@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite thread-count="4" parallel="methods" name="Failed suite [edge-suite]">
-  <parameter name="browser" value="edge"/>
-  <parameter name="env" value="PROD"/>
-  <test thread-count="4" parallel="methods" name="edge-tests(failed)">
-    <parameter name="browser" value="edge"/>
-    <parameter name="env" value="PROD"/>
+<suite thread-count="4" parallel="methods" name="Failed suite [firefox-suite]">
+  <parameter name="browser" value="firefox"/>
+  <parameter name="env" value="QA"/>
+  <test thread-count="4" parallel="methods" name="firefox-tests(failed)">
+    <parameter name="browser" value="firefox"/>
+    <parameter name="env" value="QA"/>
     <classes>
-      <class name="org.navadiya.tests.ImageLoadTest">
+      <class name="org.navadiya.tests.SampleTest">
         <methods>
           <include name="tearDown"/>
-          <include name="imagesHaveSrc"/>
           <include name="setUp"/>
+          <include name="openExampleAndAssertTitle"/>
         </methods>
-      </class> <!-- org.navadiya.tests.ImageLoadTest -->
+      </class> <!-- org.navadiya.tests.SampleTest -->
     </classes>
-  </test> <!-- edge-tests(failed) -->
-</suite> <!-- Failed suite [edge-suite] -->
+  </test> <!-- firefox-tests(failed) -->
+</suite> <!-- Failed suite [firefox-suite] -->

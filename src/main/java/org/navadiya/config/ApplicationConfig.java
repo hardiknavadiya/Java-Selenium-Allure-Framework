@@ -52,17 +52,9 @@ public class ApplicationConfig {
             }
         }
 
-        // ensure there is an 'env' system property reflecting the chosen environment (convenience)
-        if (System.getProperty("env") == null) {
-            String envFromProps = PROPS.getProperty("app.env.default");
-            if (envFromProps != null && !envFromProps.isEmpty()) {
-                System.setProperty("env", envFromProps);
-//                log.info("System property 'env' set to default from application.properties: {}", envFromProps);
-            }
-        }
 
         // apply environment-specific properties (like QA.app.url -> app.url)
-        String activeEnv = System.getProperty("env", getEnv());
+        String activeEnv = System.getProperty("app.env.default", getEnv());
         for (String fullKey : ENVS.stringPropertyNames()) {
             if (fullKey.startsWith(activeEnv + ".")) {
                 String key = fullKey.substring(activeEnv.length() + 1);
@@ -77,53 +69,6 @@ public class ApplicationConfig {
                 }
             }
         }
-
-        // --- Additional convenience mappings ---
-        // Map commonly used short names (used by suiteRunner and examples) to the values from application.properties
-        try {
-            // env already handled above, but ensure short keys are present for consumers that expect them
-            if (System.getProperty("browsers") == null) {
-                String b = PROPS.getProperty("app.browsers");
-                if (b != null && !b.isEmpty()) {
-                    System.setProperty("browsers", b);
-//                    log.info("Convenience System property set: browsers={}", b);
-                }
-            }
-
-            if (System.getProperty("parallel.enabled") == null) {
-                String p = PROPS.getProperty("app.parallel.enabled");
-                if (p != null && !p.isEmpty()) {
-                    System.setProperty("parallel.enabled", p);
-//                    log.info("Convenience System property set: parallel.enabled={}", p);
-                }
-            }
-
-            if (System.getProperty("parallel.threads") == null) {
-                String t = PROPS.getProperty("app.parallel.threads");
-                if (t != null && !t.isEmpty()) {
-                    System.setProperty("parallel.threads", t);
-//                    log.info("Convenience System property set: parallel.threads={}", t);
-                }
-            }
-
-            if (System.getProperty("rerun.attempts") == null) {
-                String r = PROPS.getProperty("app.rerun.attempts");
-                if (r != null && !r.isEmpty()) {
-                    System.setProperty("rerun.attempts", r);
-//                    log.info("Convenience System property set: rerun.attempts={}", r);
-                }
-            }
-
-            if (System.getProperty("headless") == null) {
-                String h = PROPS.getProperty("app.headless");
-                if (h != null && !h.isEmpty()) {
-                    System.setProperty("headless", h);
-//                    log.info("Convenience System property set: headless={}", h);
-                }
-            }
-        } catch (Exception e) {
-            log.debug("Error while applying convenience mappings: {}", e.getMessage(), e);
-        }
     }
 
     public static String getProperty(String key) {
@@ -135,33 +80,33 @@ public class ApplicationConfig {
     }
 
     public static String getEnv() {
-        String e = System.getProperty("env");
+        String e = System.getProperty("app.env.default");
         if (e != null) return e;
         return PROPS.getProperty("app.env.default", "QA");
     }
 
     public static String[] getBrowsers() {
-        String b = System.getProperty("browsers");
+        String b = System.getProperty("app.browsers");
         if (b == null || b.isEmpty()) b = PROPS.getProperty("app.browsers", "chrome");
         return Arrays.stream(b.split(",")).map(String::trim).toArray(String[]::new);
     }
 
     public static boolean isParallelEnabled() {
-        String p = System.getProperty("parallel.enabled");
+        String p = System.getProperty("app.parallel.enabled");
         if (p == null) p = System.getProperty("app.parallel.enabled");
         if (p == null) p = PROPS.getProperty("app.parallel.enabled", "false");
         return Boolean.parseBoolean(p);
     }
 
     public static int getThreadCount() {
-        String t = System.getProperty("parallel.threads");
+        String t = System.getProperty("app.parallel.threads");
         if (t == null) t = System.getProperty("app.parallel.threads");
         if (t == null) t = PROPS.getProperty("app.parallel.threads", "1");
         try { return Integer.parseInt(t); } catch (Exception e) { return 1; }
     }
 
     public static int getRerunAttempts() {
-        String r = System.getProperty("rerun.attempts");
+        String r = System.getProperty("app.rerun.attempts");
         if (r == null) r = System.getProperty("app.rerun.attempts");
         if (r == null) r = PROPS.getProperty("app.rerun.attempts", "0");
         try { return Integer.parseInt(r); } catch (Exception e) { return 0; }
@@ -174,7 +119,7 @@ public class ApplicationConfig {
     }
 
     public static boolean isHeadless() {
-        String h = System.getProperty("headless");
+        String h = System.getProperty("app.headless");
         if (h == null) h = System.getProperty("app.headless");
         if (h == null) h = PROPS.getProperty("app.headless", "false");
         return Boolean.parseBoolean(h);

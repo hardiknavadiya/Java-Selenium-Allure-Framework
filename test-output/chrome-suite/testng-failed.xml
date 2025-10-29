@@ -2,18 +2,18 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite thread-count="4" parallel="methods" name="Failed suite [chrome-suite]">
   <parameter name="browser" value="chrome"/>
-  <parameter name="env" value="PROD"/>
+  <parameter name="env" value="QA"/>
   <test thread-count="4" parallel="methods" name="chrome-tests(failed)">
     <parameter name="browser" value="chrome"/>
-    <parameter name="env" value="PROD"/>
+    <parameter name="env" value="QA"/>
     <classes>
-      <class name="org.navadiya.tests.ImageLoadTest">
+      <class name="org.navadiya.tests.SampleTest">
         <methods>
           <include name="tearDown"/>
-          <include name="imagesHaveSrc"/>
           <include name="setUp"/>
+          <include name="openExampleAndAssertTitle"/>
         </methods>
-      </class> <!-- org.navadiya.tests.ImageLoadTest -->
+      </class> <!-- org.navadiya.tests.SampleTest -->
     </classes>
   </test> <!-- chrome-tests(failed) -->
 </suite> <!-- Failed suite [chrome-suite] -->

@@ -2,14 +2,17 @@ package org.navadiya;
 
 import lombok.extern.slf4j.Slf4j;
 import org.navadiya.driver.DriverManager;
+import org.navadiya.listeners.AllureReportTimestampListener;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 
 /**
  * BaseTest initializes and tears down WebDriver per test method using DriverManager (ThreadLocal).
  */
 @Slf4j
+@Listeners({AllureReportTimestampListener.class})
 public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)

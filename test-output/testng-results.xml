@@ -2,31 +2,31 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-29T16:45:38 GMT-04:00" name="chrome-suite" finished-at="2025-10-29T16:45:50 GMT-04:00" duration-ms="11240">
+  <suite started-at="2025-10-29T17:10:46 GMT-04:00" name="firefox-suite" finished-at="2025-10-29T17:10:59 GMT-04:00" duration-ms="12489">
     <groups>
     </groups>
-    <test started-at="2025-10-29T16:45:38 GMT-04:00" name="chrome-tests" finished-at="2025-10-29T16:45:50 GMT-04:00" duration-ms="11240">
+    <test started-at="2025-10-29T17:10:46 GMT-04:00" name="firefox-tests" finished-at="2025-10-29T17:10:59 GMT-04:00" duration-ms="12489">
       <class name="org.navadiya.tests.SampleTest">
-        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.SampleTest@d62fe5b]" started-at="2025-10-29T16:45:38 GMT-04:00" name="setUp" finished-at="2025-10-29T16:45:40 GMT-04:00" duration-ms="1501" status="PASS">
+        <test-method is-config="true" signature="setUp(org.testng.ITestContext)[pri:0, instance:org.navadiya.tests.SampleTest@1ebea008]" started-at="2025-10-29T17:10:46 GMT-04:00" name="setUp" finished-at="2025-10-29T17:10:52 GMT-04:00" duration-ms="5241" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[org.testng.TestRunner@b2c5e07]]>
+                <![CDATA[org.testng.TestRunner@66c61024]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method signature="openExampleAndAssertTitle()[pri:0, instance:org.navadiya.tests.SampleTest@d62fe5b]" started-at="2025-10-29T16:45:40 GMT-04:00" name="openExampleAndAssertTitle" finished-at="2025-10-29T16:45:49 GMT-04:00" duration-ms="9218" status="PASS">
+        <test-method signature="openExampleAndAssertTitle()[pri:0, instance:org.navadiya.tests.SampleTest@1ebea008]" started-at="2025-10-29T17:10:52 GMT-04:00" name="openExampleAndAssertTitle" finished-at="2025-10-29T17:10:58 GMT-04:00" duration-ms="6097" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- openExampleAndAssertTitle -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.SampleTest@d62fe5b]" started-at="2025-10-29T16:45:49 GMT-04:00" name="tearDown" finished-at="2025-10-29T16:45:50 GMT-04:00" duration-ms="510" status="PASS">
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:org.navadiya.tests.SampleTest@1ebea008]" started-at="2025-10-29T17:10:58 GMT-04:00" name="tearDown" finished-at="2025-10-29T17:10:59 GMT-04:00" duration-ms="1011" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
       </class> <!-- org.navadiya.tests.SampleTest -->
-    </test> <!-- chrome-tests -->
-  </suite> <!-- chrome-suite -->
+    </test> <!-- firefox-tests -->
+  </suite> <!-- firefox-suite -->
 </testng-results>

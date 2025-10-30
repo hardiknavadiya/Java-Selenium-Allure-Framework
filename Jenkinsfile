@@ -8,7 +8,10 @@ pipeline {
         ALLURE_REPORT = 'target/allure-report'
         ALLURE_HISTORY = 'allure-history'
         EMAIL_RECIPIENTS = 'hardiknavadiya51@gmail.com'
-        MAVEN_CMD = 'mvn clean test'
+        MAVEN_CMD = 'clean test'
+    }
+    tools {
+            maven 'M3'
     }
 
     parameters {
@@ -44,7 +47,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL})"
-                    bat "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
+                    bat "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
             }
             post {
                 always {

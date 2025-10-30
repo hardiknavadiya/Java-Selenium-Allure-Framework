@@ -43,3 +43,18 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=2
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+
+
+  jenkins:
+    image: jenkins/jenkins:lts-jdk21
+    container_name: jenkins-lts
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins_home:/var/jenkins_home
+    restart: on-failure
+
+volumes:
+  jenkins_home:
+    name: jenkins-data

@@ -6,13 +6,13 @@ pipeline {
         BRANCH = 'master'
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
-        ALLURE_HISTORY = 'allure-history'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
         MAVEN_CMD = 'clean test'
     }
     tools {
             allure 'Allure'
             maven 'M3'
+            jdk 'JDK22'
     }
 
     parameters {
@@ -60,14 +60,7 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 echo 'Generating Allure Report...'
-                bat """
-                    if exist "${ALLURE_HISTORY}" (
-                        xcopy /E /I /Y "${ALLURE_HISTORY}" "${ALLURE_RESULTS}\\history"
-                    )
-                    allure generate "${ALLURE_RESULTS}" --clean -o "${ALLURE_REPORT}"
-                    if not exist "${ALLURE_HISTORY}" mkdir "${ALLURE_HISTORY}"
-                    xcopy /E /I /Y "${ALLURE_REPORT}\\history" "${ALLURE_HISTORY}\\"
-                """
+                bat "allure generate ${ALLURE_RESULTS} --clean -o ${ALLURE_REPORT}"
             }
         }
 

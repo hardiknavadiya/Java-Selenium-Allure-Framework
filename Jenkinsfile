@@ -27,6 +27,11 @@ pipeline {
             defaultValue: true,
             description: 'Run browsers in headless mode'
         )
+        booleanParam(
+            name: 'PARALLEL',
+            defaultValue: false,
+            description: 'Run browsers in parallel mode'
+        )
     }
 
     stages {
@@ -38,8 +43,8 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS})"
-                sh "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS}"
+                echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL})"
+                    sh "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
             }
             post {
                 always {

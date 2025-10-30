@@ -11,6 +11,7 @@ pipeline {
         MAVEN_CMD = 'clean test'
     }
     tools {
+            allure 'Allure'
             maven 'M3'
     }
 

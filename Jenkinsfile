@@ -53,7 +53,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
-                    sh "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
+                sh "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
             }
             post {
                 always {
@@ -62,15 +62,9 @@ pipeline {
             }
         }
 
-        stage('Generate Allure Report') {
-            steps {
-                echo 'Generating Allure Report...'
-                sh "allure generate ${ALLURE_RESULTS} --clean -o ${ALLURE_REPORT}"
-            }
-        }
-
         stage('Publish Allure Report') {
             steps {
+                // This step USES the 'Allure' tool to generate and publish the report
                 allure includeProperties: false, jdk: '', results: [[path: "${ALLURE_RESULTS}"]]
             }
         }

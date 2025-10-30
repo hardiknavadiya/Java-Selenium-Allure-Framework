@@ -59,14 +59,14 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 echo 'Generating Allure Report...'
-                bat '''
-                    if [ -d "${ALLURE_HISTORY}" ]; then
-                        cp -r ${ALLURE_HISTORY} ${ALLURE_RESULTS}/history || true
-                    fi
-                    allure generate ${ALLURE_RESULTS} --clean -o ${ALLURE_REPORT}
-                    mkdir -p ${ALLURE_HISTORY}
-                    cp -r ${ALLURE_REPORT}/history/* ${ALLURE_HISTORY}/ || true
-                '''
+                bat """
+                    if exist "${ALLURE_HISTORY}" (
+                        xcopy /E /I /Y "${ALLURE_HISTORY}" "${ALLURE_RESULTS}\\history"
+                    )
+                    allure generate "${ALLURE_RESULTS}" --clean -o "${ALLURE_REPORT}"
+                    if not exist "${ALLURE_HISTORY}" mkdir "${ALLURE_HISTORY}"
+                    xcopy /E /I /Y "${ALLURE_REPORT}\\history" "${ALLURE_HISTORY}\\"
+                """
             }
         }
 

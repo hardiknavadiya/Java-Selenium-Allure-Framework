@@ -7,7 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         ALLURE_HISTORY = 'allure-history'
-        EMAIL_RECIPIENTS = 'hardiknavadiya51@gmail.com'
+        EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
         MAVEN_CMD = 'clean test'
     }
     tools {

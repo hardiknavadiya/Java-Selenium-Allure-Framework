@@ -7,8 +7,11 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         ALLURE_HISTORY = 'allure-history'
-        EMAIL_RECIPIENTS = 'hardiknavadiya51@gmail.com'
-        MAVEN_CMD = 'mvn clean test'
+        EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
+        MAVEN_CMD = 'clean test'
+    }
+    tools {
+            maven 'M3'
     }
 
     parameters {
@@ -44,7 +47,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL})"
-                    sh "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
+                    bat "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
             }
             post {
                 always {
@@ -56,7 +59,7 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 echo 'Generating Allure Report...'
-                sh '''
+                bat '''
                     if [ -d "${ALLURE_HISTORY}" ]; then
                         cp -r ${ALLURE_HISTORY} ${ALLURE_RESULTS}/history || true
                     fi

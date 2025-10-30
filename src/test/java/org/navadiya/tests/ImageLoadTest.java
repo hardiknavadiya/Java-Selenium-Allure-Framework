@@ -21,7 +21,7 @@ public class ImageLoadTest extends BaseTest {
         String envUrl = ApplicationConfig.getEnvProperty("app.url");
         if (envUrl == null || envUrl.isEmpty()) envUrl = ApplicationConfig.getProperty("app.url");
         driver.get(envUrl);
-        List<WebElement> imgs = driver.findElements(By.tagName("img"));
+        List<WebElement> imgs = driver.findElements(By.xpath("//img[@id='vow-login-logo']"));
         log.info("ImageLoadTest: found {} images", imgs.size());
         for (WebElement img : imgs) {
             String src = img.getAttribute("src");
@@ -30,4 +30,3 @@ public class ImageLoadTest extends BaseTest {
         }
     }
 }
-

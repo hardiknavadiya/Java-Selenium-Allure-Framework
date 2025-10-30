@@ -44,7 +44,7 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL})"
-                    sh "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
+                    bat "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
             }
             post {
                 always {
@@ -56,7 +56,7 @@ pipeline {
         stage('Generate Allure Report') {
             steps {
                 echo 'Generating Allure Report...'
-                sh '''
+                bat '''
                     if [ -d "${ALLURE_HISTORY}" ]; then
                         cp -r ${ALLURE_HISTORY} ${ALLURE_RESULTS}/history || true
                     fi

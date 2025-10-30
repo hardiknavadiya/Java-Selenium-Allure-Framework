@@ -32,6 +32,11 @@ pipeline {
             description: 'Run browsers in headless mode'
         )
         booleanParam(
+            name: 'GRID',
+            defaultValue: true,
+            description: 'Run browsers in Selenium Grid'
+        )
+        booleanParam(
             name: 'PARALLEL',
             defaultValue: false,
             description: 'Run browsers in parallel mode'
@@ -47,8 +52,8 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL})"
-                    sh "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL}"
+                echo "Running tests in ${params.ENV} environment on browsers: ${params.BROWSERS} (headless: ${params.HEADLESS}) (parallel: ${params.PARALLEL}) (selenium grid: ${params.GRID})"
+                    sh "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
             }
             post {
                 always {

@@ -128,6 +128,7 @@
                         <app.env.default>${app.env.default}</app.env.default>
                         <app.browsers>${app.browsers}</app.browsers>
                         <app.headless>${app.headless}</app.headless>
+                        <selenium.grid.enabled>${selenium.grid.enabled}</selenium.grid.enabled>
                         <!-- Use the canonical property so results go to target/allure-results -->
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
                     </systemPropertyVariables>

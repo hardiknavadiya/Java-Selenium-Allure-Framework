@@ -82,12 +82,12 @@ public class ApplicationConfig {
     public static String getEnv() {
         String e = System.getProperty("app.env.default");
         if (e != null) return e;
-        return PROPS.getProperty("app.env.default", "QA");
+        return PROPS.getProperty("app.env.default");
     }
 
     public static String[] getBrowsers() {
         String b = System.getProperty("app.browsers");
-        if (b == null || b.isEmpty()) b = PROPS.getProperty("app.browsers", "chrome");
+        if (b == null || b.isEmpty()) b = PROPS.getProperty("app.browsers");
         return Arrays.stream(b.split(",")).map(String::trim).toArray(String[]::new);
     }
 

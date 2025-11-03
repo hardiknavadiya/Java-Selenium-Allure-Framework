@@ -125,11 +125,11 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
-                        <app.env.default>${app.env.default}</app.env.default>
-                        <app.browsers>${app.browsers}</app.browsers>
-                        <app.parallel.enabled>${app.parallel.enabled}</app.parallel.enabled>
-                        <app.headless>${app.headless}</app.headless>
-                        <selenium.grid.enabled>${selenium.grid.enabled}</selenium.grid.enabled>
+<!--                        <app.env.default>${app.env.default}</app.env.default>-->
+<!--                        <app.browsers>${app.browsers}</app.browsers>-->
+<!--                        <app.parallel.enabled>${app.parallel.enabled}</app.parallel.enabled>-->
+<!--                        <app.headless>${app.headless}</app.headless>-->
+<!--                        <selenium.grid.enabled>${selenium.grid.enabled}</selenium.grid.enabled>-->
                         <!-- Use the canonical property so results go to target/allure-results -->
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
                     </systemPropertyVariables>
@@ -165,4 +165,23 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>run-suite</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <configuration>
+                            <mainClass>org.navadiya.SuiteRunner</mainClass>
+                            <arguments />
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

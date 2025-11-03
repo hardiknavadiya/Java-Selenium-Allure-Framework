@@ -18,7 +18,7 @@ pipeline {
     parameters {
         choice(
             name: 'ENV',
-            choices: ['QA', 'PROD', 'DEV'],
+            choices: ['PROD', 'QA', 'DEV'],
             description: 'Choose environment to run tests'
         )
         string(
@@ -28,7 +28,7 @@ pipeline {
         )
         booleanParam(
             name: 'HEADLESS',
-            defaultValue: true,
+            defaultValue: false,
             description: 'Run browsers in headless mode'
         )
         booleanParam(
@@ -38,7 +38,7 @@ pipeline {
         )
         booleanParam(
             name: 'PARALLEL',
-            defaultValue: false,
+            defaultValue: true,
             description: 'Run browsers in parallel mode'
         )
     }
@@ -53,13 +53,18 @@ pipeline {
         stage('Build & Test') {
             steps {
                 echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
-                sh "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
-            }
-            post {
+
+                sh """
+                  pkill -9 -f java || true
+                  rm -rf target
+                  mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}
+                """
+              }
+              post {
                 always {
-                    junit 'target/surefire-reports/*.xml'
+                  junit 'target/surefire-reports/*.xml'
                 }
-            }
+              }
         }
 
         stage('Publish Allure Report') {

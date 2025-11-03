@@ -55,7 +55,6 @@ pipeline {
                 echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
 
                 sh """
-                  pkill -9 -f java || true
                   rm -rf target
                   mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}
                 """

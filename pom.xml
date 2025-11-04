@@ -152,25 +152,24 @@
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
             </plugin>
+
+            <!-- Exec Maven Plugin: Run programmatic TestNG suite -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <mainClass>org.navadiya.SuiteRunner</mainClass>
+                    <classpathScope>test</classpathScope>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
     <profiles>
         <profile>
             <id>run-suite</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>exec-maven-plugin</artifactId>
-                        <version>3.1.0</version>
-                        <configuration>
-                            <mainClass>org.navadiya.SuiteRunner</mainClass>
-                            <classpathScope>test</classpathScope>
-                        </configuration>
-                    </plugin>
-                </plugins>
-            </build>
+            <!-- Profile is optional; exec:java works with global plugin config -->
         </profile>
     </profiles>
 </project>

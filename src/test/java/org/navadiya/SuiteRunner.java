@@ -12,15 +12,9 @@ import java.util.jar.JarFile;
 import java.nio.file.Files;
 import java.util.*;
 
-/**
- * Programmatic TestNG runner using ApplicationConfig for defaults.
- * System properties override application.properties values.
- *
- * Usage examples:
- *  mvn -Denv=DEV -Dbrowsers=chrome,firefox -Dparallel.threads=10 -Drerun.attempts=2 test
- */
+
 @Slf4j
-public class suiteRunner {
+public class SuiteRunner {
 
     public static void main(String[] args) {
         String env = ApplicationConfig.getEnv();

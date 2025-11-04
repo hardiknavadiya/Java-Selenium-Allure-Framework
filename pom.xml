@@ -16,7 +16,7 @@
         <testng.version>7.8.0</testng.version>
         <allure.version>2.20.1</allure.version>
         <assertj.version>3.24.2</assertj.version>
-        <poi.version>5.2.3</poi.version>
+        <poi.version>5.4.0</poi.version>
         <webdrivermanager.version>6.3.2</webdrivermanager.version>
         <!-- Canonical Allure results directory under the project's build directory (usually 'target') -->
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
@@ -88,11 +88,6 @@
             <version>2.0.7</version>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.7</version>
@@ -125,12 +120,6 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <systemPropertyVariables>
-<!--                        <app.env.default>${app.env.default}</app.env.default>-->
-<!--                        <app.browsers>${app.browsers}</app.browsers>-->
-<!--                        <app.parallel.enabled>${app.parallel.enabled}</app.parallel.enabled>-->
-<!--                        <app.headless>${app.headless}</app.headless>-->
-<!--                        <selenium.grid.enabled>${selenium.grid.enabled}</selenium.grid.enabled>-->
-                        <!-- Use the canonical property so results go to target/allure-results -->
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
                     </systemPropertyVariables>
                 </configuration>
@@ -177,7 +166,7 @@
                         <version>3.1.0</version>
                         <configuration>
                             <mainClass>org.navadiya.SuiteRunner</mainClass>
-                            <arguments />
+                            <classpathScope>test</classpathScope>
                         </configuration>
                     </plugin>
                 </plugins>

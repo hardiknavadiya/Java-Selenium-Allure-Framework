@@ -157,7 +157,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.6.2</version>
+                <version>3.1.0</version>
                 <configuration>
                     <mainClass>org.navadiya.SuiteRunner</mainClass>
                     <classpathScope>test</classpathScope>
@@ -168,7 +168,7 @@
 
     <profiles>
         <profile>
-            <id>run-suite</id>
+            <id>runSuite</id>
             <!-- Profile is optional; exec:java works with global plugin config -->
         </profile>
     </profiles>

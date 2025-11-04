@@ -7,7 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'clean test-compile exec:java -Prun-suite'
+        MAVEN_CMD = 'clean test-compile exec:java -PrunSuite'
     }
     tools {
             allure 'Allure'

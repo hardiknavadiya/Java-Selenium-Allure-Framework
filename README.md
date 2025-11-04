@@ -56,7 +56,9 @@ src/
 ## Prerequisites
 
 - Java 22 or higher (as specified in pom.xml)
-  - Note: If you have an older Java version, update `maven.compiler.source` and `maven.compiler.target` in `pom.xml` to match your Java version (e.g., 17)
+  - Note: The pom.xml is configured for Java 22, which is not an LTS version
+  - For production use, consider updating to Java 17 (LTS) or Java 21 (LTS)
+  - To change Java version: update `maven.compiler.source` and `maven.compiler.target` in `pom.xml`
 - Maven 3.6+
 - Browsers installed (Chrome, Firefox, Edge)
 
@@ -97,12 +99,16 @@ You can also run tests by executing the main class directly after compiling:
 # Compile the project
 mvn clean compile test-compile
 
-# Run the main class
+# Run the main class (Linux/Mac)
 java -cp "target/test-classes:target/classes:$(mvn dependency:build-classpath -Dmdep.outputFile=/dev/stdout -q)" \
   org.navadiya.suiteRunner
+
+# Run the main class (Windows)
+# First generate classpath: mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
+# Then: java -cp "target/test-classes;target/classes;%classpath_from_file%" org.navadiya.suiteRunner
 ```
 
-With system properties:
+With system properties (Linux/Mac):
 ```bash
 java -Dapp.browsers=chrome,firefox \
      -Dapp.parallel.enabled=true \
@@ -111,6 +117,8 @@ java -Dapp.browsers=chrome,firefox \
      -cp "target/test-classes:target/classes:$(mvn dependency:build-classpath -Dmdep.outputFile=/dev/stdout -q)" \
      org.navadiya.suiteRunner
 ```
+
+**Note:** Direct execution requires all dependencies on the classpath. Using Maven (Option 1) is recommended for simplicity.
 
 ### Option 3: Using Selenium Grid
 

@@ -7,7 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'clean test-compile exec:java -PrunSuite'
+        MAVEN_CMD = 'clean test-compile exec:java'
     }
     tools {
             allure 'Allure'
@@ -52,16 +52,24 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
+                echo "mvn ${MAVEN_CMD} -Dexec.mainClass=org.navadiya.SuiteRunner -Dexec.classpathScope=test -Dapp.env.default=${params.ENV} -Dapp.browsers=${params.BROWSERS} -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
 
                 sh """
                   rm -rf target
-                  mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers='${params.BROWSERS}' -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}
+                  mvn ${MAVEN_CMD} \
+                    -Dexec.mainClass=org.navadiya.SuiteRunner \
+                    -Dexec.classpathScope=test \
+                    -Dapp.env.default=${params.ENV} \
+                    -Dapp.browsers=${params.BROWSERS} \
+                    -Dapp.headless=${params.HEADLESS} \
+                    -Dapp.parallel.enabled=${params.PARALLEL} \
+                    -Dselenium.grid.enabled=${params.GRID}
                 """
               }
               post {
                 always {
-                  junit 'target/surefire-reports/*.xml'
+                  // Programmatic TestNG run may not produce surefire XML; allow empty to avoid aborting the build
+                  junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
                 }
               }
         }

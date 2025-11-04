@@ -1,12 +1,20 @@
 version: "3"
+networks:
+  jenkins-grid-net:
+    driver: bridge
+
 services:
   selenium-hub:
     image: selenium/hub:4.25.0
     container_name: selenium-hub
+    environment:
+      - SE_OPENTELEMETRY_DISABLED=true
     ports:
       - "4442:4442"
       - "4443:4443"
       - "4444:4444"
+    networks:
+      - jenkins-grid-net
 
   chrome:
     image: selenium/node-chrome:4.25.0
@@ -19,6 +27,9 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=2
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+      - SE_OPENTELEMETRY_DISABLED=true
+    networks:
+      - jenkins-grid-net
 
   firefox:
     image: selenium/node-firefox:4.25.0
@@ -31,6 +42,8 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=2
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    networks:
+      - jenkins-grid-net
 
   edge:
     image: selenium/node-edge:4.25.0
@@ -43,6 +56,8 @@ services:
       - SE_EVENT_BUS_SUBSCRIBE_PORT=4443
       - SE_NODE_MAX_SESSIONS=2
       - SE_NODE_OVERRIDE_MAX_SESSIONS=true
+    networks:
+      - jenkins-grid-net
 
 
   jenkins:
@@ -53,7 +68,8 @@ services:
       - "50000:50000"
     volumes:
       - jenkins_home:/var/jenkins_home
-    restart: on-failure
+    networks:
+      - jenkins-grid-net
 
 volumes:
   jenkins_home:

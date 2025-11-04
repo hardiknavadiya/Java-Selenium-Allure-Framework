@@ -102,7 +102,18 @@
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <!-- Pin plugin versions used by direct CLI invocation (e.g., exec:java) -->
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.6.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -157,19 +168,38 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.6.2</version>
+                <executions>
+                    <execution>
+                        <id>run-suite</id>
+                        <goals>
+                            <goal>java</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>org.navadiya.SuiteRunner</mainClass>
+                            <classpathScope>test</classpathScope>
+                            <includeProjectDependencies>true</includeProjectDependencies>
+                            <addOutputToClasspath>true</addOutputToClasspath>
+                            <additionalClasspathElements>
+                                <additionalClasspathElement>${project.build.testOutputDirectory}</additionalClasspathElement>
+                                <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                            </additionalClasspathElements>
+                            <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                        </configuration>
+                    </execution>
+                </executions>
                 <configuration>
                     <mainClass>org.navadiya.SuiteRunner</mainClass>
                     <classpathScope>test</classpathScope>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <addOutputToClasspath>true</addOutputToClasspath>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.build.testOutputDirectory}</additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
                 </configuration>
             </plugin>
         </plugins>
     </build>
-
-    <profiles>
-        <profile>
-            <id>runSuite</id>
-            <!-- Profile is optional; exec:java works with global plugin config -->
-        </profile>
-    </profiles>
 </project>

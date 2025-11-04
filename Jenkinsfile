@@ -7,7 +7,8 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'clean test-compile exec:java'
+        // Use the configured execution id to ensure proper classpath (test) is used
+        MAVEN_CMD = 'clean test-compile exec:java@run-suite'
     }
     tools {
             allure 'Allure'
@@ -52,13 +53,11 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "mvn ${MAVEN_CMD} -Dexec.mainClass=org.navadiya.SuiteRunner -Dexec.classpathScope=test -Dapp.env.default=${params.ENV} -Dapp.browsers=${params.BROWSERS} -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
+                echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers=${params.BROWSERS} -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
 
                 sh """
                   rm -rf target
                   mvn ${MAVEN_CMD} \
-                    -Dexec.mainClass=org.navadiya.SuiteRunner \
-                    -Dexec.classpathScope=test \
                     -Dapp.env.default=${params.ENV} \
                     -Dapp.browsers=${params.BROWSERS} \
                     -Dapp.headless=${params.HEADLESS} \

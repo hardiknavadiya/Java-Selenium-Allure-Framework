@@ -57,7 +57,7 @@ src/
 
 - Java 22 or higher (as specified in pom.xml)
   - Note: The pom.xml is configured for Java 22, which is not an LTS version
-  - For production use, consider updating to Java 17 (LTS) or Java 21 (LTS)
+  - For production use, consider updating to Java 17 (LTS) or Java 21 (current LTS as of 2024)
   - To change Java version: update `maven.compiler.source` and `maven.compiler.target` in `pom.xml`
 - Maven 3.6+
 - Browsers installed (Chrome, Firefox, Edge)
@@ -103,9 +103,18 @@ mvn clean compile test-compile
 java -cp "target/test-classes:target/classes:$(mvn dependency:build-classpath -Dmdep.outputFile=/dev/stdout -q)" \
   org.navadiya.suiteRunner
 
-# Run the main class (Windows)
-# First generate classpath: mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
-# Then: java -cp "target/test-classes;target/classes;%classpath_from_file%" org.navadiya.suiteRunner
+# Run the main class (Windows - PowerShell)
+# First, save dependencies to a file
+mvn dependency:build-classpath -Dmdep.outputFile=cp.txt
+
+# Then run with the classpath (using Windows path separators)
+# Read cp.txt content and use it in the command
+java -cp "target\test-classes;target\classes;$(Get-Content cp.txt)" org.navadiya.suiteRunner
+
+# Alternative for Windows Command Prompt:
+# Set the classpath from file and run
+for /f "delims=" %i in (cp.txt) do set CP=%i
+java -cp "target\test-classes;target\classes;%CP%" org.navadiya.suiteRunner
 ```
 
 With system properties (Linux/Mac):

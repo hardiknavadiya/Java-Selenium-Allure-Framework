@@ -55,7 +55,8 @@ src/
 
 ## Prerequisites
 
-- Java 22 or higher
+- Java 22 or higher (as specified in pom.xml)
+  - Note: If you have an older Java version, update `maven.compiler.source` and `maven.compiler.target` in `pom.xml` to match your Java version (e.g., 17)
 - Maven 3.6+
 - Browsers installed (Chrome, Firefox, Edge)
 

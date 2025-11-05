@@ -7,8 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        // Use the configured execution id to ensure proper classpath (test) is used
-        MAVEN_CMD = 'compile test-compile exec:java'
+        MAVEN_CMD = 'compile test-compile exec:java -Dexec.mainClass=org.navadiya.SuiteRunner -Dexec.classpathScope=test'
     }
     tools {
             allure 'Allure'

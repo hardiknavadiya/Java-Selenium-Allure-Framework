@@ -7,7 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'compile test-compile exec:java -Dexec.mainClass=org.navadiya.SuiteRunner -Dexec.classpathScope=test'
+        MAVEN_CMD = 'mvn test'
     }
     tools {
             allure 'Allure'
@@ -52,11 +52,11 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                echo "mvn ${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers=${params.BROWSERS} -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID}"
+                echo "Running tests in ${params.ENV} environment with browsers: ${params.BROWSERS}"
 
                 sh """
                   rm -rf target
-                  mvn ${MAVEN_CMD} \
+                  ${MAVEN_CMD} \
                     -Dapp.env.default=${params.ENV} \
                     -Dapp.browsers=${params.BROWSERS} \
                     -Dapp.headless=${params.HEADLESS} \
@@ -66,7 +66,7 @@ pipeline {
               }
               post {
                 always {
-                  // Programmatic TestNG run may not produce surefire XML; allow empty to avoid aborting the build
+                  // Publish TestNG test results from surefire reports
                   junit allowEmptyResults: true, testResults: 'target/surefire-reports/*.xml'
                 }
               }

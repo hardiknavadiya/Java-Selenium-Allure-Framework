@@ -7,8 +7,8 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        // Run only the wrapper test that invokes SuiteRunner so Surefire doesn't auto-create a default suite
-        MAVEN_CMD = 'mvn -Dtest=org.navadiya.SuiteRunnerTest test'
+        // Let POM Surefire <includes> pick the wrapper test; avoid -Dtest pattern mismatch
+        MAVEN_CMD = 'mvn test'
     }
     tools {
             allure 'Allure'
@@ -42,6 +42,11 @@ pipeline {
             defaultValue: true,
             description: 'Run browsers in parallel mode'
         )
+        string(
+            name: 'SUITE_TEST_CLASS',
+            defaultValue: 'org.navadiya.tests.SampleTest',
+            description: 'FQCN(s) for SuiteRunner to execute (comma-separated or package.*)'
+        )
     }
 
     stages {
@@ -55,15 +60,20 @@ pipeline {
             steps {
                 echo "Running tests in ${params.ENV} environment with browsers: ${params.BROWSERS}"
 
-                sh """
-                  rm -rf target
-                  ${MAVEN_CMD} \
-                    -Dapp.env.default=${params.ENV} \
-                    -Dapp.browsers=${params.BROWSERS} \
-                    -Dapp.headless=${params.HEADLESS} \
-                    -Dapp.parallel.enabled=${params.PARALLEL} \
-                    -Dselenium.grid.enabled=${params.GRID}
-                """
+                script {
+                    def args = "${MAVEN_CMD} -Dapp.env.default=${params.ENV} -Dapp.browsers=${params.BROWSERS} -Dapp.headless=${params.HEADLESS} -Dapp.parallel.enabled=${params.PARALLEL} -Dselenium.grid.enabled=${params.GRID} -Dsuite.test.class=${params.SUITE_TEST_CLASS}"
+                    if (isUnix()) {
+                        sh """
+                          rm -rf target
+                          ${args}
+                        """
+                    } else {
+                        bat """
+                          if exist target rmdir /s /q target
+                          ${args}
+                        """
+                    }
+                }
               }
               post {
                 always {
@@ -86,7 +96,7 @@ pipeline {
             emailext (
                 subject: "✅ Selenium Tests Passed - Build #${BUILD_NUMBER}",
                 body: """<p>All tests passed successfully in ${params.ENV} environment.</p>
-                         <p>See Allure report: <a href="${BUILD_URL}allure">Click here</a></p>""",
+                         <p>See Allure report: <a href=\"${BUILD_URL}allure\">Click here</a></p>""",
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
             )
@@ -95,7 +105,7 @@ pipeline {
             emailext (
                 subject: "❌ Selenium Tests Failed - Build #${BUILD_NUMBER}",
                 body: """<p>Some tests failed in ${params.ENV} environment.</p>
-                         <p>See Allure report: <a href="${BUILD_URL}allure">Click here</a></p>""",
+                         <p>See Allure report: <a href=\"${BUILD_URL}allure\">Click here</a></p>""",
                 to: "${EMAIL_RECIPIENTS}",
                 mimeType: 'text/html'
             )

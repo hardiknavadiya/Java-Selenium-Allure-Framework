@@ -183,19 +183,9 @@
                     <!-- Run SuiteRunnerTest which invokes SuiteRunner programmatically -->
                     <includes>
                         <include>**/SuiteRunnerTest.java</include>
-                    </includes>
+                     </includes>
                     <systemPropertyVariables>
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
-                        <!-- Pass system properties from command line to tests -->
-                        <app.env.default>${app.env.default}</app.env.default>
-                        <app.browsers>${app.browsers}</app.browsers>
-                        <app.headless>${app.headless}</app.headless>
-                        <app.parallel.enabled>${app.parallel.enabled}</app.parallel.enabled>
-                        <app.parallel.threads>${app.parallel.threads}</app.parallel.threads>
-                        <app.rerun.attempts>${app.rerun.attempts}</app.rerun.attempts>
-                        <suite.test.class>${suite.test.class}</suite.test.class>
-                        <selenium.grid.enabled>${selenium.grid.enabled}</selenium.grid.enabled>
-                        <selenium.grid.url>${selenium.grid.url}</selenium.grid.url>
                     </systemPropertyVariables>
                     <!-- Ensure proper test execution -->
                     <threadCount>1</threadCount>

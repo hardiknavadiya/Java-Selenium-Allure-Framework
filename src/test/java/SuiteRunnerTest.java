@@ -1,5 +1,4 @@
-package org.navadiya;
-
+import org.navadiya.SuiteRunner;
 import org.testng.annotations.Test;
 
 /**

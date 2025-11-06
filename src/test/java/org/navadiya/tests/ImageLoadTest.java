@@ -1,19 +1,21 @@
 package org.navadiya.tests;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.BaseTest;
 import org.navadiya.config.ApplicationConfig;
 import org.navadiya.driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-@Slf4j
 public class ImageLoadTest extends BaseTest {
+
+    private static final Logger log = LoggerFactory.getLogger(ImageLoadTest.class);
 
     @Test
     public void imagesHaveSrc() {

@@ -1,19 +1,19 @@
 package org.navadiya.config;
 
-import lombok.extern.slf4j.Slf4j;
-
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Simple properties loader for test configuration. Reads from test resources application.properties
  * and environments.properties located on the classpath.
  */
-@Slf4j
 public class ApplicationConfig {
     private static final Properties PROPS = new Properties();
     private static final Properties ENVS = new Properties();
+    private static final Logger log = LoggerFactory.getLogger(ApplicationConfig.class);
 
     static {
         try (InputStream in = ApplicationConfig.class.getClassLoader().getResourceAsStream("application.properties")) {
@@ -27,14 +27,13 @@ public class ApplicationConfig {
         try {
             applyPropertiesToSystem();
         } catch (Exception e) {
-            log.warn("Failed to apply properties to System properties: {}", e.getMessage(), e);
+            log.warn("Failed to apply properties to System properties", e);
         }
     }
 
     /**
      * Apply properties from application.properties and the active environment section of
      * environments.properties to System properties if they are not already set.
-     *
      * This provides defaults that can be overridden by -D system properties or environment variables.
      */
     public static void applyPropertiesToSystem() {
@@ -74,9 +73,7 @@ public class ApplicationConfig {
     public static String getProperty(String key) {
         String val = System.getProperty(key);
         if (val != null) return val;
-        val = PROPS.getProperty(key);
-        if (val != null) return val;
-        return null;
+        return PROPS.getProperty(key);
     }
 
     public static String getEnv() {

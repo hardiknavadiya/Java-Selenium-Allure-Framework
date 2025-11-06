@@ -1,15 +1,16 @@
 package org.navadiya.listeners;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.config.ApplicationConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
 /**
  * Retry analyzer that retries failed tests based on ApplicationConfig.getRerunAttempts().
  */
-@Slf4j
 public class RetryAnalyzer implements IRetryAnalyzer {
+    private static final Logger log = LoggerFactory.getLogger(RetryAnalyzer.class);
     private int count = 0;
     private final int maxAttempts;
 
@@ -28,4 +29,3 @@ public class RetryAnalyzer implements IRetryAnalyzer {
         return false;
     }
 }
-

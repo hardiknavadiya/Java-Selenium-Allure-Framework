@@ -1,17 +1,19 @@
 package org.navadiya.tests;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.BaseTest;
 import org.navadiya.config.ApplicationConfig;
 import org.navadiya.driver.DriverManager;
 import org.navadiya.visual.VisualValidator;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-@Slf4j
 public class HeaderElementTest extends BaseTest {
+
+    private static final Logger log = LoggerFactory.getLogger(HeaderElementTest.class);
 
     @Test
     public void h1ElementPresent() {
@@ -25,4 +27,3 @@ public class HeaderElementTest extends BaseTest {
         Assert.assertTrue(present, "Expected an img element on the page");
     }
 }
-

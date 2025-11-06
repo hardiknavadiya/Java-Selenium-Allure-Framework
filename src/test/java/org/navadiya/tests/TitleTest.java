@@ -1,15 +1,17 @@
 package org.navadiya.tests;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.BaseTest;
 import org.navadiya.config.ApplicationConfig;
 import org.navadiya.driver.DriverManager;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-@Slf4j
 public class TitleTest extends BaseTest {
+
+    private static final Logger log = LoggerFactory.getLogger(TitleTest.class);
 
     @Test
     public void titleIsPresent() {
@@ -23,4 +25,3 @@ public class TitleTest extends BaseTest {
         Assert.assertFalse(title.isEmpty(), "Page title should not be empty");
     }
 }
-

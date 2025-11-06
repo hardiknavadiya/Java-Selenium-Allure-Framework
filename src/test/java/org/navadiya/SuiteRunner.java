@@ -1,7 +1,8 @@
 package org.navadiya;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.config.ApplicationConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.TestNG;
 import org.testng.xml.XmlClass;
 import org.testng.xml.XmlSuite;
@@ -11,10 +12,13 @@ import java.io.File;
 import java.util.jar.JarFile;
 import java.nio.file.Files;
 import java.util.*;
+import java.nio.file.Path;
+import java.util.stream.Stream;
 
 
-@Slf4j
 public class SuiteRunner {
+
+    private static final Logger log = LoggerFactory.getLogger(SuiteRunner.class);
 
     public static void main(String[] args) {
         String env = ApplicationConfig.getEnv();
@@ -47,12 +51,16 @@ public class SuiteRunner {
             t.setParameters(params);
             // Resolve one or more test class names (comma-separated) to Class objects so TestNG receives proper class references.
             String[] testClasses;
-            if (testClass != null && testClass.trim().endsWith(".*")) {
-                String pkg = testClass.trim().substring(0, testClass.trim().length() - 2);
+            String tcProp = (testClass == null) ? null : testClass.trim();
+            if (tcProp != null && tcProp.endsWith(".*")) {
+                String pkg = tcProp.substring(0, tcProp.length() - 2);
                 List<String> discovered = discoverTestClassesInPackage(pkg);
                 testClasses = discovered.toArray(new String[0]);
+            } else if (tcProp != null && !tcProp.isEmpty()) {
+                testClasses = tcProp.split(",");
             } else {
-                testClasses = testClass.split(",");
+                log.error("No test classes specified. Check 'suite.testClass' property in application/environments configuration.");
+                throw new IllegalStateException("No test classes configured for SuiteRunner");
             }
              for (String tc : testClasses) {
                  tc = tc.trim();
@@ -102,8 +110,8 @@ public class SuiteRunner {
                 if (f.isDirectory()) {
                     File pkgDir = new File(f, pkg.replace('.', File.separatorChar));
                     if (pkgDir.exists() && pkgDir.isDirectory()) {
-                        Files.walk(pkgDir.toPath())
-                                .filter(p -> p.toString().endsWith(".class"))
+                        try (Stream<Path> walk = Files.walk(pkgDir.toPath())) {
+                            walk.filter(p -> p.toString().endsWith(".class"))
                                 .forEach(p -> {
                                     String rel = pkgDir.toPath().relativize(p).toString();
                                     String className = rel.replace(File.separatorChar, '.').replaceAll("\\.class$", "");
@@ -112,6 +120,7 @@ public class SuiteRunner {
                                         if (isTestClass(fqcn)) result.add(fqcn);
                                     }
                                 });
+                        }
                     }
                 } else if (f.isFile() && f.getName().endsWith(".jar")) {
                     try (JarFile jf = new JarFile(f)) {

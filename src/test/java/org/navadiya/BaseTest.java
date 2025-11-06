@@ -1,6 +1,7 @@
 package org.navadiya;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.navadiya.driver.DriverManager;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
@@ -9,8 +10,9 @@ import org.testng.annotations.BeforeMethod;
 /**
  * BaseTest initializes and tears down WebDriver per test method using DriverManager (ThreadLocal).
  */
-@Slf4j
 public class BaseTest {
+    private static final Logger log = LoggerFactory.getLogger(BaseTest.class);
+
 
     @BeforeMethod(alwaysRun = true)
     public void setUp(ITestContext context) throws Exception {

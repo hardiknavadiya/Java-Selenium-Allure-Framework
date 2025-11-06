@@ -1,7 +1,8 @@
 package org.navadiya.listeners;
 
-import lombok.extern.slf4j.Slf4j;
 import org.navadiya.config.ApplicationConfig;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.IAnnotationTransformer;
 import org.testng.ITestNGListener;
 import org.testng.annotations.ITestAnnotation;
@@ -14,8 +15,8 @@ import java.lang.reflect.Method;
  *
  * Implements ITestNGListener so it can be registered via TestNG listener APIs.
  */
-@Slf4j
 public class RetryAnnotationTransformer implements IAnnotationTransformer, ITestNGListener {
+    private static final Logger log = LoggerFactory.getLogger(RetryAnnotationTransformer.class);
     private final int maxAttempts;
 
     public RetryAnnotationTransformer() {

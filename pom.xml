@@ -12,14 +12,16 @@
         <maven.compiler.source>22</maven.compiler.source>
         <maven.compiler.target>22</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <selenium.version>4.11.0</selenium.version>
+        <selenium.version>4.36.0</selenium.version>
         <testng.version>7.8.0</testng.version>
         <allure.version>2.20.1</allure.version>
         <assertj.version>3.24.2</assertj.version>
-        <poi.version>5.2.3</poi.version>
+        <poi.version>5.4.0</poi.version>
         <webdrivermanager.version>6.3.2</webdrivermanager.version>
         <!-- Canonical Allure results directory under the project's build directory (usually 'target') -->
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+        <!-- Allure history directory outside target to survive mvn clean -->
+        <allure.history.directory>${project.basedir}/allure-history</allure.history.directory>
     </properties>
     <dependencies>
         <!-- Selenium -->
@@ -28,7 +30,11 @@
             <artifactId>selenium-java</artifactId>
             <version>${selenium.version}</version>
         </dependency>
-
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>2.21.0</version>
+        </dependency>
         <!-- WebDriverManager -->
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
@@ -88,11 +94,6 @@
             <version>2.0.7</version>
         </dependency>
         <dependency>
-            <groupId>com.googlecode.json-simple</groupId>
-            <artifactId>json-simple</artifactId>
-            <version>1.1.1</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-simple</artifactId>
             <version>2.0.7</version>
@@ -103,20 +104,75 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.30</version>
+            <version>1.18.42</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
+
+    <!-- Pin plugin versions used by direct CLI invocation (e.g., exec:java) -->
     <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>exec-maven-plugin</artifactId>
+                    <version>3.6.2</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.11.0</version>
                 <configuration>
+                    <compilerArgument>-proc:none</compilerArgument>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
                 </configuration>
+            </plugin>
+
+            <!-- Maven Resources Plugin: Preserve Allure history across runs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
+                <executions>
+                    <!-- Copy history from persistent storage to allure-results before tests -->
+                    <execution>
+                        <id>copy-history-to-results</id>
+                        <phase>test-compile</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${allure.results.directory}/history</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${allure.history.directory}</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                    <!-- Save history from generated report back to persistent storage -->
+                    <execution>
+                        <id>save-history-from-report</id>
+                        <phase>post-site</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${allure.history.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${project.build.directory}/my-allure-html-report/history</directory>
+                                    <filtering>false</filtering>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -124,13 +180,18 @@
                 <version>3.0.0-M9</version>
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
+                    <!-- Run SuiteRunnerTest which invokes SuiteRunner programmatically -->
+                    <includes>
+                        <include>**/SuiteRunnerTest.java</include>
+                     </includes>
                     <systemPropertyVariables>
-                        <app.env.default>${app.env.default}</app.env.default>
-                        <app.browsers>${app.browsers}</app.browsers>
-                        <app.headless>${app.headless}</app.headless>
-                        <!-- Use the canonical property so results go to target/allure-results -->
                         <allure.results.directory>${allure.results.directory}</allure.results.directory>
                     </systemPropertyVariables>
+                    <!-- Ensure proper test execution -->
+                    <threadCount>1</threadCount>
+                    <forkCount>1</forkCount>
+                    <reuseForks>false</reuseForks>
+                    <argLine>-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -160,6 +221,31 @@
                 <groupId>org.sonarsource.scanner.maven</groupId>
                 <artifactId>sonar-maven-plugin</artifactId>
                 <version>3.9.1.2184</version>
+            </plugin>
+
+            <!-- Exec Maven Plugin: Run programmatic TestNG suite -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>3.6.2</version>
+                <configuration>
+                    <mainClass>org.navadiya.SuiteRunner</mainClass>
+                    <classpathScope>test</classpathScope>
+                    <includeProjectDependencies>true</includeProjectDependencies>
+                    <addOutputToClasspath>true</addOutputToClasspath>
+                    <additionalClasspathElements>
+                        <additionalClasspathElement>${project.build.testOutputDirectory}</additionalClasspathElement>
+                        <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
+                    </additionalClasspathElements>
+                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
+                    <!-- Add systemProperties to pass allure.results.directory -->
+                    <systemProperties>
+                        <systemProperty>
+                            <key>allure.results.directory</key>
+                            <value>${allure.results.directory}</value>
+                        </systemProperty>
+                    </systemProperties>
+                </configuration>
             </plugin>
         </plugins>
     </build>

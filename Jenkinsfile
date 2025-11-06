@@ -7,7 +7,8 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'mvn test'
+        // Run only the wrapper test that invokes SuiteRunner so Surefire doesn't auto-create a default suite
+        MAVEN_CMD = 'mvn -Dtest=org.navadiya.SuiteRunnerTest test'
     }
     tools {
             allure 'Allure'

@@ -1,5 +1,6 @@
 package org.navadiya.listeners;
 
+import io.qameta.allure.Allure;
 import org.navadiya.driver.DriverManager;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -9,6 +10,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import java.io.ByteArrayInputStream;
 
 public class TestListener implements ITestListener {
 
@@ -27,8 +30,10 @@ public class TestListener implements ITestListener {
         try {
             WebDriver driver = DriverManager.getDriver();
             if (driver != null) {
-                byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-                saveScreenshotPNG(bytes);
+                byte[] screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
+                // Attach screenshot to Allure report
+                Allure.addAttachment("Screenshot on Failure", "image/png",
+                    new ByteArrayInputStream(screenshot), "png");
             }
         } catch (Exception e) {
             log.warn("Could not capture screenshot on failure: {}", e.getMessage(), e);
@@ -49,10 +54,5 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onFinish(ITestContext context) {
-    }
-
-    // Attachment disabled: Allure dependency not present. This method can be used by reporters if integrated.
-    public byte[] saveScreenshotPNG(byte[] screen) {
-        return screen;
     }
 }

@@ -1,6 +1,7 @@
 package org.navadiya.driver;
 
 import org.navadiya.config.ApplicationConfig;
+import com.epam.healenium.SelfHealingDriver;
 import org.openqa.selenium.WebDriver;
 
 /**
@@ -46,6 +47,15 @@ public class DriverManager {
 
         if (existing == null) {
             WebDriver wd = WebDriverFactory.createInstance(desired);
+            // Wrap with Healenium SelfHealingDriver if enabled
+            if (ApplicationConfig.isHealeniumEnabled()) {
+                try {
+                   wd = SelfHealingDriver.create(wd);
+                } catch (Throwable t) {
+                    // If Healenium cannot initialize, fall back to raw driver but log it via stdout to avoid extra logger deps here
+                    System.err.println("[Healenium] Failed to initialize SelfHealingDriver, continuing with raw WebDriver: " + t);
+                }
+            }
             DRIVER.set(wd);
             BROWSER.set(desired);
         }

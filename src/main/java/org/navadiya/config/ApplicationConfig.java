@@ -175,4 +175,23 @@ public class ApplicationConfig {
         }
         return null;
     }
+
+    // --- Healenium configuration helpers ---
+
+    /** Toggle to enable/disable Healenium self-healing. Defaults to false. */
+    public static boolean isHealeniumEnabled() {
+        String v = getProperty("healenium.enabled");
+        if (v == null) return false;
+        return Boolean.parseBoolean(v);
+    }
+
+    /** Healenium backend URL (optional; SDK has defaults). */
+    public static String getHealeniumBackendUrl() {
+        return getProperty("healenium.backend.url");
+    }
+
+    /** Healenium selector imitator URL (optional). */
+    public static String getHealeniumSelectorUrl() {
+        return getProperty("healenium.selector.url");
+    }
 }

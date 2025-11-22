@@ -10,9 +10,9 @@ import org.testng.annotations.Test;
 
 import java.time.Duration;
 
-public class AmazonSignIn extends BaseTest {
+public class amazonSignIn extends BaseTest {
 
-    private static final Logger log = LoggerFactory.getLogger(AmazonSignIn.class);
+    private static final Logger log = LoggerFactory.getLogger(amazonSignIn.class);
 
     @Test
     public void openExampleAndAssertTitle() {
@@ -21,10 +21,10 @@ public class AmazonSignIn extends BaseTest {
         Duration timeout = defaultTimeout();
         try {
             // Use central locators
-            try { WaitUtils.clickWhenClickable(driver, AppLocators.CONSENT_BUTTON, timeout); } catch (Exception ignored) {}
+            WaitUtils.clickWhenClickable(driver, AppLocators.CONSENT_BUTTON, timeout);
             WaitUtils.clickWhenClickable(driver, AppLocators.MY_ACCOUNT, timeout);
             WaitUtils.waitForVisible(driver, AppLocators.SIGN_IN, timeout).click();
-            try { WaitUtils.clickWhenClickable(driver, AppLocators.CONSENT_BUTTON, timeout); } catch (Exception ignored) {}
+            WaitUtils.clickWhenClickable(driver, AppLocators.CONSENT_BUTTON, timeout);
             WaitUtils.typeWhenInteractable(driver, AppLocators.EMAIL_INPUT, timeout, "yihop65927@wivstore.com", true);
             WaitUtils.clickWhenClickable(driver, AppLocators.CONTINUE_BUTTON, timeout);
             WaitUtils.typeWhenInteractable(driver, AppLocators.PIN_INPUT, timeout, "456654", true);

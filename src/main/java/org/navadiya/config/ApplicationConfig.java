@@ -159,8 +159,7 @@ public class ApplicationConfig {
 
     /** Chrome profile directory name inside the user data dir (e.g., Default, Profile 1). */
     public static String getChromeProfileDirectory() {
-        String dir = getProperty("chrome.profile.directory");
-        return dir;
+        return getProperty("chrome.profile.directory");
     }
 
     /** Validate that the computed Chrome user data dir exists; return null if not. */
@@ -183,15 +182,5 @@ public class ApplicationConfig {
         String v = getProperty("healenium.enabled");
         if (v == null) return false;
         return Boolean.parseBoolean(v);
-    }
-
-    /** Healenium backend URL (optional; SDK has defaults). */
-    public static String getHealeniumBackendUrl() {
-        return getProperty("healenium.backend.url");
-    }
-
-    /** Healenium selector imitator URL (optional). */
-    public static String getHealeniumSelectorUrl() {
-        return getProperty("healenium.selector.url");
     }
 }

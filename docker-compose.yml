@@ -15,7 +15,7 @@ services:
     volumes:
       - ./db/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
-      - POSTGRES_DB=healenium
+      - POSTGRES_DB=healenium_user
       - POSTGRES_USER=healenium_user
       - POSTGRES_PASSWORD=YDk2nmNs4s9aCP6K
     networks:
@@ -121,4 +121,3 @@ services:
 
 volumes:
   jenkins_home:
-    name: jenkins-data

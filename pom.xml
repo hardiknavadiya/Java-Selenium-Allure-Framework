@@ -20,8 +20,6 @@
         <webdrivermanager.version>6.3.2</webdrivermanager.version>
         <!-- Canonical Allure results directory under the project's build directory (usually 'target') -->
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-        <!-- Allure history directory outside target to survive mvn clean -->
-        <allure.history.directory>${project.basedir}/allure-history</allure.history.directory>
     </properties>
     <dependencies>
         <!-- Selenium -->
@@ -42,16 +40,37 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
 
+        <!-- Healenium -->
         <dependency>
             <groupId>com.epam.healenium</groupId>
             <artifactId>healenium-web</artifactId>
             <version>3.5.7</version>
         </dependency>
 
+        <!-- OkHttp dependency required by Healenium (NoClassDefFoundError okhttp3/RequestBody) -->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
-            <version>5.1.0</version>
+            <version>4.12.0</version>
+        </dependency>
+
+        <!-- OpenCV bindings for Java (ORB-based visual comparison) -->
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.9.0-0</version>
+        </dependency>
+
+        <!-- Enhanced ImageIO plugins for robust PNG/JPEG handling -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-core</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>3.11.0</version>
         </dependency>
 
         <!-- TestNG -->
@@ -150,10 +169,10 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
                 <executions>
-                    <!-- Copy history from persistent storage to allure-results before tests -->
+                    <!-- Copy existing history INTO allure-results/history BEFORE tests run -->
                     <execution>
                         <id>copy-history-to-results</id>
-                        <phase>test-compile</phase>
+                        <phase>process-test-classes</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -161,21 +180,21 @@
                             <outputDirectory>${allure.results.directory}/history</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${allure.history.directory}</directory>
+                                    <directory>${project.basedir}/allure-history</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
-                    <!-- Save history from generated report back to persistent storage -->
+                    <!-- Save history from generated report back to persistent storage AFTER report generation -->
                     <execution>
                         <id>save-history-from-report</id>
-                        <phase>post-site</phase>
+                        <phase>post-integration-test</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${allure.history.directory}</outputDirectory>
+                            <outputDirectory>${project.basedir}/allure-history</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/my-allure-html-report/history</directory>
@@ -205,6 +224,13 @@
                     <reuseForks>false</reuseForks>
                     <argLine>-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError</argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-testng</artifactId>
+                        <version>3.0.0-M9</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
@@ -213,7 +239,7 @@
                 <executions>
                     <execution>
                         <id>allure-report</id>
-                        <phase>verify</phase>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>

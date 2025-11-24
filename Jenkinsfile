@@ -7,7 +7,6 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        // Let POM Surefire <includes> pick the wrapper test; avoid -Dtest pattern mismatch
         MAVEN_CMD = 'mvn test'
     }
     tools {

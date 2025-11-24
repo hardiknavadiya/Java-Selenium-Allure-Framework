@@ -19,7 +19,7 @@ public final class AppLocators {
     public static final By SIGN_IN = By.xpath("//div[normalize-space()='Sign In'] | //a[normalize-space()='Sign In'] | //button[normalize-space()='Sign In']");
 
     // --- Auth form ---
-    public static final By EMAIL_INPUT = By.id("email");
+    public static final By EMAIL_INPUT = By.id("login");
     public static final By PIN_INPUT = By.id("pin");
     public static final By CONTINUE_BUTTON = By.cssSelector("button[data-test-id='button-continue']");
     public static final By SEND_VERIFICATION_CODE_BUTTON= By.xpath("//div[normalize-space()='Send verification code']");

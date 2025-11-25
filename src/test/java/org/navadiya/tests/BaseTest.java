@@ -1,6 +1,5 @@
-package org.navadiya;
+package org.navadiya.tests;
 
-import org.navadiya.visual.VisualValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.navadiya.config.ApplicationConfig;
@@ -25,7 +24,6 @@ public class BaseTest {
         try {
             if (context != null && context.getCurrentXmlTest() != null) {
                 String browserParam = context.getCurrentXmlTest().getParameter("browser");
-                String envParam = context.getCurrentXmlTest().getParameter("env");
                 // create driver with the specific browser for this test (thread-local)
                 if (browserParam != null && !browserParam.isEmpty()) {
                     DriverManager.createDriver(browserParam);

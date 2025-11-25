@@ -7,7 +7,7 @@ pipeline {
         ALLURE_RESULTS = 'target/allure-results'
         ALLURE_REPORT = 'target/allure-report'
         EMAIL_RECIPIENTS = 'hardiknavadiya5@gmail.com'
-        MAVEN_CMD = 'mvn test'
+        MAVEN_CMD = 'mvn test post-integration-test'
     }
     tools {
             allure 'Allure'

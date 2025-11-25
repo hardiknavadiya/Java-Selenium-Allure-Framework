@@ -1,7 +1,6 @@
 package org.navadiya.tests;
 
 import io.qameta.allure.Step;
-import org.navadiya.BaseTest;
 import org.navadiya.util.WaitUtils;
 import org.navadiya.locators.AppLocators;
 import org.navadiya.visual.VisualValidator;

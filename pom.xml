@@ -15,13 +15,9 @@
         <selenium.version>4.36.0</selenium.version>
         <testng.version>7.8.0</testng.version>
         <allure.version>2.20.1</allure.version>
-        <assertj.version>3.24.2</assertj.version>
-        <poi.version>5.4.0</poi.version>
         <webdrivermanager.version>6.3.2</webdrivermanager.version>
         <!-- Canonical Allure results directory under the project's build directory (usually 'target') -->
         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
-        <!-- Allure history directory outside target to survive mvn clean -->
-        <allure.history.directory>${project.basedir}/allure-history</allure.history.directory>
     </properties>
     <dependencies>
         <!-- Selenium -->
@@ -42,6 +38,39 @@
             <version>${webdrivermanager.version}</version>
         </dependency>
 
+        <!-- Healenium -->
+        <dependency>
+            <groupId>com.epam.healenium</groupId>
+            <artifactId>healenium-web</artifactId>
+            <version>3.5.7</version>
+        </dependency>
+
+        <!-- OkHttp dependency required by Healenium (NoClassDefFoundError okhttp3/RequestBody) -->
+        <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>4.12.0</version>
+        </dependency>
+
+        <!-- OpenCV bindings for Java (ORB-based visual comparison) -->
+        <dependency>
+            <groupId>org.openpnp</groupId>
+            <artifactId>opencv</artifactId>
+            <version>4.9.0-0</version>
+        </dependency>
+
+        <!-- Enhanced ImageIO plugins for robust PNG/JPEG handling -->
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-core</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.twelvemonkeys.imageio</groupId>
+            <artifactId>imageio-jpeg</artifactId>
+            <version>3.11.0</version>
+        </dependency>
+
         <!-- TestNG -->
         <dependency>
             <groupId>org.testng</groupId>
@@ -57,34 +86,11 @@
             <version>${allure.version}</version>
         </dependency>
 
-        <!-- Apache POI for Excel support -->
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-            <version>${poi.version}</version>
-        </dependency>
-
-        <!-- AssertJ for fluent assertions -->
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>${assertj.version}</version>
-            <scope>test</scope>
-        </dependency>
-
         <!-- Gson for simple JSON handling -->
         <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
             <version>2.10.1</version>
-        </dependency>
-
-        <!-- REST-assured for API testing (optional) -->
-        <dependency>
-            <groupId>io.rest-assured</groupId>
-            <artifactId>rest-assured</artifactId>
-            <version>5.3.0</version>
-            <scope>test</scope>
         </dependency>
 
         <!-- SLF4J for logging -->
@@ -138,10 +144,10 @@
                 <artifactId>maven-resources-plugin</artifactId>
                 <version>3.3.1</version>
                 <executions>
-                    <!-- Copy history from persistent storage to allure-results before tests -->
+                    <!-- Copy existing history INTO allure-results/history BEFORE tests run -->
                     <execution>
                         <id>copy-history-to-results</id>
-                        <phase>test-compile</phase>
+                        <phase>process-test-classes</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
@@ -149,21 +155,21 @@
                             <outputDirectory>${allure.results.directory}/history</outputDirectory>
                             <resources>
                                 <resource>
-                                    <directory>${allure.history.directory}</directory>
+                                    <directory>${project.basedir}/allure-history</directory>
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
                         </configuration>
                     </execution>
-                    <!-- Save history from generated report back to persistent storage -->
+                    <!-- Save history from generated report back to persistent storage AFTER report generation -->
                     <execution>
                         <id>save-history-from-report</id>
-                        <phase>post-site</phase>
+                        <phase>post-integration-test</phase>
                         <goals>
                             <goal>copy-resources</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>${allure.history.directory}</outputDirectory>
+                            <outputDirectory>${project.basedir}/allure-history</outputDirectory>
                             <resources>
                                 <resource>
                                     <directory>${project.build.directory}/my-allure-html-report/history</directory>
@@ -193,6 +199,13 @@
                     <reuseForks>false</reuseForks>
                     <argLine>-Xmx2048m -XX:+HeapDumpOnOutOfMemoryError</argLine>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.apache.maven.surefire</groupId>
+                        <artifactId>surefire-testng</artifactId>
+                        <version>3.0.0-M9</version>
+                    </dependency>
+                </dependencies>
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
@@ -201,7 +214,7 @@
                 <executions>
                     <execution>
                         <id>allure-report</id>
-                        <phase>verify</phase>
+                        <phase>integration-test</phase>
                         <goals>
                             <goal>report</goal>
                         </goals>
@@ -209,42 +222,8 @@
                 </executions>
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
-                    <!-- Place generated report under target/my-allure-html-report -->
                     <reportDirectory>${project.build.directory}/my-allure-html-report</reportDirectory>
-                    <!-- Use the canonical results directory defined in properties -->
                     <resultsDirectory>${allure.results.directory}</resultsDirectory>
-                </configuration>
-            </plugin>
-
-            <!-- Sonar scanner can be configured via Jenkins; provide plugin for convenience -->
-            <plugin>
-                <groupId>org.sonarsource.scanner.maven</groupId>
-                <artifactId>sonar-maven-plugin</artifactId>
-                <version>3.9.1.2184</version>
-            </plugin>
-
-            <!-- Exec Maven Plugin: Run programmatic TestNG suite -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>exec-maven-plugin</artifactId>
-                <version>3.6.2</version>
-                <configuration>
-                    <mainClass>org.navadiya.SuiteRunner</mainClass>
-                    <classpathScope>test</classpathScope>
-                    <includeProjectDependencies>true</includeProjectDependencies>
-                    <addOutputToClasspath>true</addOutputToClasspath>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>${project.build.testOutputDirectory}</additionalClasspathElement>
-                        <additionalClasspathElement>${project.build.outputDirectory}</additionalClasspathElement>
-                    </additionalClasspathElements>
-                    <cleanupDaemonThreads>false</cleanupDaemonThreads>
-                    <!-- Add systemProperties to pass allure.results.directory -->
-                    <systemProperties>
-                        <systemProperty>
-                            <key>allure.results.directory</key>
-                            <value>${allure.results.directory}</value>
-                        </systemProperty>
-                    </systemProperties>
                 </configuration>
             </plugin>
         </plugins>

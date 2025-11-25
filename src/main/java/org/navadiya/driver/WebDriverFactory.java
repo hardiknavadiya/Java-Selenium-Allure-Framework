@@ -12,12 +12,16 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 import java.time.Duration;
 import java.util.Locale;
 
 public class WebDriverFactory {
+
+    public static final Logger log = LoggerFactory.getLogger(WebDriverFactory.class);
 
     public static WebDriver createInstance(String browser) throws Exception {
         // decide grid usage from explicit flag in application.properties: selenium.grid.enabled=true/false
@@ -60,12 +64,32 @@ public class WebDriverFactory {
                     WebDriverManager.chromedriver().setup();
                     ChromeOptions opts = new ChromeOptions();
                     if (ApplicationConfig.isHeadless()) opts.addArguments("--headless=new");
-//                opts.addArguments("--no-sandbox", "--disable-dev-shm-usage");
                     opts.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                     opts.addArguments("window-size=1900,1080");
-                    ChromeDriver c = new ChromeDriver(opts);
-                    c.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-                    return c;
+                    try {
+                        // Add Chrome profile if enabled
+                        if (ApplicationConfig.isChromeProfileEnabled()) {
+                            String userDataDir = ApplicationConfig.getChromeUserDataDir();
+                            String validatedPath = ApplicationConfig.validateChromeUserDataDir(userDataDir);
+
+                            if (validatedPath != null) {
+                                opts.addArguments("--user-data-dir=" + validatedPath);
+
+                                String profileDir = ApplicationConfig.getChromeProfileDirectory();
+                                if (profileDir != null && !profileDir.isBlank()) {
+                                    opts.addArguments("--profile-directory=" + profileDir.trim());
+                                }
+                            }
+                        }
+
+                        ChromeDriver c = new ChromeDriver(opts);
+                        c.manage().window().maximize();
+                        c.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                        return c;
+                    } catch (Exception ex) {
+                        log.error("Please close all chrome browser instances before running tests with Chrome user profile.", ex);
+                        throw new RuntimeException(ex);
+                    }
             }
         }
     }

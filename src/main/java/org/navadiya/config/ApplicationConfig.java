@@ -1,5 +1,6 @@
 package org.navadiya.config;
 
+import java.io.File;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Properties;
@@ -127,5 +128,59 @@ public class ApplicationConfig {
         String val = ENVS.getProperty(env + "." + key);
         if (val == null) val = ENVS.getProperty("QA." + key);
         return val;
+    }
+
+    // --- Chrome profile configuration helpers ---
+
+    /** Whether to launch Chrome using a persistent local user profile. */
+    public static boolean isChromeProfileEnabled() {
+        String v = getProperty("chrome.profile.enabled");
+        return Boolean.parseBoolean(v);
+    }
+
+    /** Absolute path to Chrome user data directory (e.g., C:\\Users\\<you>\\AppData\\Local\\Google\\Chrome\\User Data). */
+    public static String getChromeUserDataDir() {
+        String path = getProperty("chrome.profile.path");
+        if (path != null && !path.isBlank()) return path.trim();
+        // Try to resolve a sensible default based on OS
+        String os = System.getProperty("os.name", "").toLowerCase();
+        String userHome = System.getProperty("user.home");
+        if (os.contains("win")) {
+            String localAppData = System.getenv("LOCALAPPDATA");
+            if (localAppData == null || localAppData.isEmpty()) localAppData = userHome + "\\AppData\\Local";
+            return localAppData + "\\Google\\Chrome\\User Data";
+        } else if (os.contains("mac")) {
+            return userHome + "/Library/Application Support/Google/Chrome";
+        } else {
+            // Linux
+            return userHome + "/.config/google-chrome";
+        }
+    }
+
+    /** Chrome profile directory name inside the user data dir (e.g., Default, Profile 1). */
+    public static String getChromeProfileDirectory() {
+        return getProperty("chrome.profile.directory");
+    }
+
+    /** Validate that the computed Chrome user data dir exists; return null if not. */
+    public static String validateChromeUserDataDir(String path) {
+        try {
+            if (path == null) return null;
+            File f = new File(path);
+            if (f.exists() && f.isDirectory()) return f.getAbsolutePath();
+            log.warn("Configured chrome.profile.path does not exist: {}", path);
+        } catch (Exception e) {
+            log.warn("Unable to validate chrome.profile.path: {}", path, e);
+        }
+        return null;
+    }
+
+    // --- Healenium configuration helpers ---
+
+    /** Toggle to enable/disable Healenium self-healing. Defaults to false. */
+    public static boolean isHealeniumEnabled() {
+        String v = getProperty("healenium.enabled");
+        if (v == null) return false;
+        return Boolean.parseBoolean(v);
     }
 }

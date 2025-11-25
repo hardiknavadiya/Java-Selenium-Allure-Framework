@@ -380,8 +380,6 @@ screenshots/
 - **0.90 - 0.97**: Normal (minor differences allowed)
 - **0.70 - 0.89**: Lenient (for dynamic content)
 
-📖 **Detailed Guide**: See [VISUAL_VALIDATION_GUIDE.md](VISUAL_VALIDATION_GUIDE.md) for complete documentation.
-
 ---
 
 ## 🔧 Self-Healing Tests (Healenium)

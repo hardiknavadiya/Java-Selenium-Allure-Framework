@@ -380,7 +380,6 @@ screenshots/
 - **0.90 - 0.97**: Normal (minor differences allowed)
 - **0.70 - 0.89**: Lenient (for dynamic content)
 
----
 
 ## 🔧 Self-Healing Tests (Healenium)
 

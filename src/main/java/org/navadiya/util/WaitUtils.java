@@ -40,8 +40,18 @@ public final class WaitUtils {
         return new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    @Step("Wait for element visible: {locator}")
+    public static WebElement waitForVisible(WebDriver driver, WebElement locator, Duration timeout) {
+        return new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(locator));
+    }
+
     @Step("Wait for element clickable: {locator}")
     public static WebElement waitForClickable(WebDriver driver, By locator, Duration timeout) {
+        return new WebDriverWait(driver, timeout).until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    @Step("Wait for element clickable: {locator}")
+    public static WebElement waitForClickable(WebDriver driver, WebElement locator, Duration timeout) {
         return new WebDriverWait(driver, timeout).until(ExpectedConditions.elementToBeClickable(locator));
     }
 

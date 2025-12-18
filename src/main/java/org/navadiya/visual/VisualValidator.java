@@ -47,17 +47,6 @@ public class VisualValidator {
         }
     }
 
-    /**
-     * Take screenshot and attach to Allure report
-     */
-    public static void takeScreenshot(WebDriver driver, String name) {
-        try {
-            byte[] bytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment(name, new ByteArrayInputStream(bytes));
-        } catch (Exception e) {
-            log.error("Failed to take screenshot: {}", e.getMessage());
-        }
-    }
 
     /**
      * Take screenshot and save to file

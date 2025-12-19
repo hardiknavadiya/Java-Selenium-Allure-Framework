@@ -34,6 +34,7 @@ A **production-ready** Selenium test automation framework with advanced capabili
 
 ### 🎯 Core Test Automation
 - ✅ **Multi-Browser Support** - Chrome, Firefox, Edge with automatic driver management (WebDriverManager)
+- ✅ **Mobile Testing Support** - Android and iOS app testing with Appium
 - ✅ **Parallel Execution** - Cross-browser parallel testing with configurable thread pools
 - ✅ **Automatic Retry** - Smart retry mechanism for flaky tests with configurable attempts
 - ✅ **TestNG Framework** - Industry-standard test execution and reporting

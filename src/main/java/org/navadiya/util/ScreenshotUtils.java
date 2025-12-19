@@ -1,7 +1,6 @@
 package org.navadiya.util;
 
 import io.qameta.allure.Allure;
-import org.navadiya.visual.VisualValidator;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;

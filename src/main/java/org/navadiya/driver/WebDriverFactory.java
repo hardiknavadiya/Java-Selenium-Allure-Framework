@@ -1,5 +1,9 @@
 package org.navadiya.driver;
 
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.options.UiAutomator2Options;
+import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.ios.options.XCUITestOptions;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.navadiya.config.ApplicationConfig;
 import org.openqa.selenium.MutableCapabilities;
@@ -16,7 +20,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.net.URI;
-import java.time.Duration;
 import java.util.Locale;
 
 public class WebDriverFactory {
@@ -41,6 +44,20 @@ public class WebDriverFactory {
         }else {
 
             switch (b) {
+                case "android":
+                    UiAutomator2Options androidOptions = AppiumCapabilitiesManager.createAndroidCapabilities();
+                    String appiumUrl = AppiumCapabilitiesManager.getAppiumServerUrl();
+                    AndroidDriver androidDriver = new AndroidDriver(URI.create(appiumUrl).toURL(), androidOptions);
+                    log.info("Android driver created successfully");
+                    return androidDriver;
+
+                case "ios":
+                    XCUITestOptions iosOptions = AppiumCapabilitiesManager.createiOSCapabilities();
+                    String iosAppiumUrl = AppiumCapabilitiesManager.getAppiumServerUrl();
+                    IOSDriver iosDriver = new IOSDriver(URI.create(iosAppiumUrl).toURL(), iosOptions);
+                    log.info("iOS driver created successfully");
+                    return iosDriver;
+
                 case "firefox":
                     WebDriverManager.firefoxdriver().setup();
                     FirefoxOptions fopts = new FirefoxOptions();

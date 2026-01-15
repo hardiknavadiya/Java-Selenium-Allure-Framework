@@ -48,7 +48,6 @@ public class WebDriverFactory {
                     fopts.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                     FirefoxDriver f = new FirefoxDriver(fopts);
                     f.manage().window().maximize();
-                    f.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                     return f;
                 case "edge":
                     WebDriverManager.edgedriver().setup();
@@ -57,7 +56,6 @@ public class WebDriverFactory {
                     eopts.setPageLoadStrategy(PageLoadStrategy.NORMAL);
                     EdgeDriver e = new EdgeDriver(eopts);
                     e.manage().window().maximize();
-                    e.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
                     return e;
                 case "chrome":
                 default:
@@ -84,7 +82,7 @@ public class WebDriverFactory {
 
                         ChromeDriver c = new ChromeDriver(opts);
                         c.manage().window().maximize();
-                        c.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+                        // Implicit wait removed - using AjaxElementLocatorFactory and explicit waits
                         return c;
                     } catch (Exception ex) {
                         log.error("Please close all chrome browser instances before running tests with Chrome user profile.", ex);
